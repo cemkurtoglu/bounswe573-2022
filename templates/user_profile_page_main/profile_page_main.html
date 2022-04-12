@@ -1,0 +1,568 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>Profile Page</title>
+
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Main Font -->
+	<script src="{%static 'user_profile_page_settings/js/webfontloader.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Roboto:300,400,500,700:latin']
+			}
+		});
+	</script>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-reboot.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-grid.css' %}">
+	
+		<!-- Main Styles CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/main.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/fonts.min.css' %}">
+	
+
+</head>
+<body>
+
+	{%  include 'user_profile_page_settings/navbar.html' %}
+
+
+
+
+
+<!-- Top Header-Profile -->
+
+<div class="container">
+	<div class="row">
+		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<div class="ui-block">
+				<div class="top-header">
+					<div class="top-header-thumb">
+						<img src="{{user.backroundImage.url}}" width ="1920" height= "640" alignment="center" alt="nature">
+					</div>
+					<div class="profile-section">
+						<div class="control-block-button">
+
+							<div class="btn btn-control bg-primary more">
+								<svg class="olymp-settings-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-settings-icon"></use></svg>
+
+								<ul class="more-dropdown more-with-triangle triangle-bottom-right">
+									<li>
+										<a href="#" data-toggle="modal" data-target="#update-header-photo">Update Profile Photo</a>
+									</li>
+									<li>
+										<a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>
+									</li>
+									<li>
+										<a href="{% url 'user_profile_page_settings:settings' %}">Account Settings</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="top-header-author">
+						<a href="{% url 'user_profile_page_main:profile_page' %}" class="author-thumb">
+							<img src="{{user.profileImage.url}}" width="120" height="120" alignment="center" alt="author">
+						</a>
+						<div class="author-content">
+							<a href="{% url 'user_profile_page_main:profile_page' %}" class="h4 author-name">{{user.firstName}} {{user.lastName}}</a>
+							<div class="country">{{user.occupation}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ... end Top Header-Profile -->
+<div class="container">
+	<div class="row">
+
+		<!-- Main Content -->
+
+		<div class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+			<div id="newsfeed-items-grid">
+
+				<div class="ui-block">
+					<!-- Post -->
+					
+					<article class="hentry post">
+					
+							<div class="post__author author vcard inline-items">
+								<img src="{{user.profileImage.url}}" alt="author">
+					
+								<div class="author-date">
+									<a class="h6 post__author-name fn" href="{% url 'user_profile_page_main:profile_page' %}">{{user.firstName}} {{user.lastName}}</a>
+									<div class="post__date">
+										<time class="published" datetime="2017-03-24T18:18">
+											19 hours ago
+										</time>
+									</div>
+								</div>
+					
+								<div class="more">
+									<svg class="olymp-three-dots-icon">
+										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-three-dots-icon"></use>
+									</svg>
+									<ul class="more-dropdown">
+										<li>
+											<a href="#">Edit Post</a>
+										</li>
+										<li>
+											<a href="#">Delete Post</a>
+										</li>
+										<li>
+											<a href="#">Turn Off Notifications</a>
+										</li>
+										<li>
+											<a href="#">Select as Featured</a>
+										</li>
+									</ul>
+								</div>
+					
+							</div>
+					
+							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+								pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+								mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+								accusantium doloremque.
+							</p>
+					
+							<div class="post-additional-info inline-items">
+
+								<a href="#" class="post-add-icon inline-items">
+									<svg class="olymp-heart-icon">
+										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
+									</svg>
+									<span>8</span>
+								</a>
+					
+								<a href="#" class="post-add-icon inline-items">
+									<svg class="olymp-heart-icon" transform="scale(1 -1)" height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 100 100" width="100%" xmlns="http://www.w3.org/2000/svg">
+										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
+									</svg>
+									<span>8</span>
+								</a>
+					
+								<div class="comments-shared">
+									<a href="#" class="post-add-icon inline-items">
+										<svg class="olymp-speech-balloon-icon">
+											<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-speech-balloon-icon"></use>
+										</svg>
+										<span>17</span>
+									</a>
+					
+									<a href="#" class="post-add-icon inline-items">
+										<svg class="olymp-share-icon">
+											<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %}#olymp-share-icon"></use>
+										</svg>
+										<span>24</span>
+									</a>
+								</div>
+					
+					
+							</div>
+					
+							<div class="control-block-button post-control-button">
+					
+								<a href="#" class="btn btn-control featured-post">
+									<svg class="olymp-trophy-icon">
+										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-trophy-icon"></use>
+									</svg>
+								</a>
+					
+								<a href="#" class="btn btn-control">
+									<svg class="olymp-like-post-icon">
+										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-like-post-icon"></use>
+									</svg>
+								</a>
+					
+								<a href="#" class="btn btn-control">
+									<svg class="olymp-comments-post-icon">
+										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-comments-post-icon"></use>
+									</svg>
+								</a>
+					
+								<a href="#" class="btn btn-control">
+									<svg class="olymp-share-icon">
+										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-share-icon"></use>
+									</svg>
+								</a>
+					
+							</div>
+					
+						</article>
+					
+
+					<!-- ... end Comment Form  -->				</div>
+
+			</div>
+
+			<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid">
+				<svg class="olymp-three-dots-icon">
+					<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-three-dots-icon"></use>
+				</svg>
+			</a>
+		</div>
+
+		<!-- ... end Main Content -->
+
+
+		<!-- Left Sidebar -->
+
+		<div class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-12">
+
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Profile Intro</h6>
+				</div>
+				<div class="ui-block-content">
+
+					<!-- W-Personal-Info -->
+					
+					<ul class="widget w-personal-info item-block">
+						{% if user.description%}
+						<li>
+							<span class="title">About Me:</span>
+							<span class="text">{{user.description}}</span>
+						</li>
+						{% endif %}
+
+						{% if user.birthDate%}
+						<li>
+							<span class="title">Birthdate:</span>
+							</th>
+							<span class="text">{{user.birthDate}}</span>
+						</li>
+						{% endif %}
+
+						{% if user.email%}
+						<li>
+							<span class="title">Email address:</span>
+							<span class="text">{{user.email}}</span>
+						</li>
+						{% endif %}
+
+						{% if user.country%}
+						<li>
+							<span class="title">Country:</span>
+							</th>
+							<span class="text">{{user.country}}</span>
+						</li>
+						{% endif %}
+
+						{% if user.maritialStatus%}
+						<li>
+							<span class="title">Status:</span>
+							</th>
+							<span class="text">{{user.maritialStatus}}</span>
+						</li>
+						{% endif %}
+					</ul>
+					
+					<!-- .. end W-Personal-Info -->
+	
+				</div>
+			</div>
+
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">{{user.firstName}}’s Badges</h6>
+				</div>
+				<div class="ui-block-content">
+
+					<!-- W-Badges -->
+					
+					<ul class="widget w-badges">
+						<!-- <li>
+							<a href="24-CommunityBadges.html">
+								<img src="img/badge1.png" alt="author">
+								<div class="label-avatar bg-primary">2</div>
+							</a>
+						</li>
+						 -->
+					</ul>
+					
+					<!--.. end W-Badges -->
+				</div>
+			</div>
+
+		</div>
+
+		<!-- ... end Left Sidebar -->
+
+
+		<!-- Right Sidebar -->
+
+		<div class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
+
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Stats</h6>
+					<svg class="olymp-trophy-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-stats-icon"></use></svg>
+				</div>
+				<div class="ui-block-content">
+
+					<!-- W-Stats-Page -->
+					<div class="monthly-indicator-wrap">
+						<div class="monthly-indicator">
+							<a href="#" class="btn btn-control bg-blue">
+								<svg class="olymp-happy-face-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-happy-face-icon"></use></svg>
+							</a>
+
+							<div class="monthly-count">
+								9.855
+								<span class="period">Likes</span>
+							</div>
+						</div>
+
+						<div class="monthly-indicator">
+							<a href="#" class="btn btn-control bg-blue">
+								<svg class="olymp-happy-face-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-happy-face-icon"></use></svg>
+							</a>
+
+							<div class="monthly-count">
+								6.721
+								<span class="period">Shares</span>
+							</div>
+						</div>
+
+						<div class="monthly-indicator">
+							<a href="#" class="btn btn-control bg-blue">
+								<svg class="olymp-happy-face-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-happy-face-icon"></use></svg>
+							</a>
+
+							<div class="monthly-count">
+								2.047
+								<span class="period">Comments</span>
+							</div>
+						</div>
+
+						<div class="monthly-indicator">
+							<a href="#" class="btn btn-control bg-blue">
+								<svg class="olymp-happy-face-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-happy-face-icon"></use></svg>
+							</a>
+
+							<div class="monthly-count">
+								1.536
+								<span class="period">Messages</span>
+							</div>
+						</div>
+
+						
+					</div>
+				
+						
+				
+					<!-- .. end W-Stats-Page -->
+				</div>
+			</div>
+
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Blog Posts</h6>
+				</div>
+				<!-- W-Blog-Posts -->
+				
+				<ul class="widget w-blog-posts">
+					<li>
+						<article class="hentry post">
+				
+							<a href="#" class="h4">My Perfect Vacations in South America and Europe</a>
+				
+							<p>Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod por incidid ut labore et.</p>
+				
+							<div class="post__date">
+								<time class="published" datetime="2017-03-24T18:18">
+									7 hours ago
+								</time>
+							</div>
+				
+						</article>
+					</li>
+					<li>
+						<article class="hentry post">
+				
+							<a href="#" class="h4">The Big Experience of Travelling Alone</a>
+				
+							<p>Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod por incidid ut labore et.</p>
+				
+							<div class="post__date">
+								<time class="published" datetime="2017-03-24T18:18">
+									March 18th, at 6:52pm
+								</time>
+							</div>
+				
+						</article>
+					</li>
+				</ul>
+				
+				<!-- .. end W-Blog-Posts -->
+			</div>
+
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Followers (86)</h6>
+				</div>
+				<div class="ui-block-content">
+
+					<!-- W-Faved-Page -->
+					
+					<ul class="widget w-faved-page js-zoom-gallery">
+						<li>
+							<a href="#">
+								<img src="" alt="author">
+							</a>
+						</li>
+						
+						<li class="all-users">
+							<a href="#">+85</a>
+						</li>
+					</ul>
+					
+					<!-- .. end W-Faved-Page -->
+				</div>
+			</div>
+
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Social Learning Spaces</h6>
+				</div>
+
+				<!-- W-Friend-Pages-Added -->
+				
+				<ul class="widget w-friend-pages-added notification-list friend-requests">
+					<li class="inline-items">
+						<div class="author-thumb">
+							<img src="{% static 'user_profile_page_settings/img/avatar41-sm.jpg' %}" alt="author">
+						</div>
+						<div class="notification-event">
+							<a href="#" class="h6 notification-friend">The Marina Bar</a>
+							<span class="chat-message-item">Restaurant / Bar</span>
+						</div>
+						<span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
+							<a href="#">
+								<svg class="olymp-star-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-star-icon"></use></svg>
+							</a>
+						</span>
+				
+					</li>
+				
+				</ul>
+				
+				<!-- .. end W-Friend-Pages-Added -->
+			</div>
+
+
+		</div>
+
+		<!-- ... end Right Sidebar -->
+
+	</div>
+</div>
+
+<!-- Window-popup Update Header Photo -->
+
+<div class="modal fade" id="update-header-photo" tabindex="-1" role="dialog" aria-labelledby="update-header-photo" aria-hidden="true">
+	<div class="modal-dialog window-popup update-header-photo" role="document">
+		<div class="modal-content">
+			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+				<svg class="olymp-close-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-close-icon"></use></svg>
+			</a>
+
+			<div class="modal-header">
+				<h6 class="title">Update Header Photo</h6>
+			</div>
+
+			<div class="modal-body">
+				<a href="{% url 'user_profile_page_settings:upload_photo' %}" class="upload-photo-item">
+				<svg class="olymp-computer-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-computer-icon"></use></svg>
+
+				<h6>Upload Photo</h6>
+				<span>Browse your computer.</span>
+			</a>
+
+				<a href="{% url 'user_profile_page_settings:upload_photo' %}" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
+
+			<svg class="olymp-photos-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-photos-icon"></use></svg>
+
+			<h6>Choose from My Photos</h6>
+			<span>Choose from your uploaded photos</span>
+			</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- ... end Window-popup Update Header Photo -->
+
+
+
+
+
+
+<a class="back-to-top" href="#">
+	<img src="{% static 'user_profile_page_settings/svg-icons/back-to-top.svg' %}" alt="arrow" class="back-icon">
+</a>
+
+
+
+
+
+
+<!-- JS Scripts -->
+<script src="{% static 'user_profile_page_settings/js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.appear.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.matchHeight.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/svgxuse.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Headroom.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/velocity.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ScrollMagic.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.countTo.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/popper.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/material.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/smooth-scroll.js' %}"></script>
+<!-- <script src="{% static 'user_profile_page_settings/js/selectize.js' %}"></script> -->
+<script src="{% static 'user_profile_page_settings/js/swiper.jquery.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/moment.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/daterangepicker.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/simplecalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/fullcalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/isotope.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ajax-pagination.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/chartjs-plugin-deferred.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/circle-progress.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/loader.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/run-chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.gifplayer.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-and-player.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-playlist-plugin.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/js/base-init.js' %}"></script>
+<script defer src="{% static 'user_profile_page_settings/fonts/fontawesome-all.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/Bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+
+
+</body>
+</html>

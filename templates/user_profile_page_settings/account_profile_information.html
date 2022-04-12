@@ -1,0 +1,125 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>Your Account - Personal Information</title>
+
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-reboot.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-grid.css' %}">
+
+	<!-- Main Styles CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/main.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/fonts.min.css' %}">
+
+	<!-- Main Font -->
+	<script src="{%static 'user_profile_page_settings/js/webfontloader.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Roboto:300,400,500,700:latin']
+			}
+		});
+	</script>
+
+
+</head>
+<body>
+{%  include 'user_profile_page_settings/header.html' %}
+
+
+
+{%  include 'user_profile_page_settings/navbar.html' %}
+
+
+
+
+
+<!-- Your Account Personal Information -->
+
+<div class="container">
+	<div class="row">
+		<div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Personal Information</h6>
+				</div>
+				<div class="ui-block-content">
+
+					{%  include 'user_profile_page_settings/form.html' %}
+					
+				</div>
+			</div>
+		</div>
+
+		
+		{%  include 'user_profile_page_settings/sidebar.html' %}		
+
+			
+	</div>
+</div>
+
+<!-- ... end Your Account Personal Information -->
+
+
+
+
+
+
+<a class="back-to-top" href="#">
+	<img src="{% static 'user_profile_page_settings/svg-icons/back-to-top.svg' %}" alt="arrow" class="back-icon">
+</a>
+
+
+
+<!-- JS Scripts -->
+<script src="{% static 'user_profile_page_settings/js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.appear.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.matchHeight.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/svgxuse.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Headroom.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/velocity.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ScrollMagic.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.countTo.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/popper.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/material.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/smooth-scroll.js' %}"></script>
+<!-- <script src="{% static 'user_profile_page_settings/js/selectize.js' %}"></script> -->
+<script src="{% static 'user_profile_page_settings/js/swiper.jquery.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/moment.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/daterangepicker.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/simplecalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/fullcalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/isotope.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ajax-pagination.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/chartjs-plugin-deferred.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/circle-progress.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/loader.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/run-chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.gifplayer.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-and-player.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-playlist-plugin.min.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/js/base-init.js' %}"></script>
+<script defer src="{% static 'user_profile_page_settings/fonts/fontawesome-all.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/Bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+# created by virtualenv automatically
+virtualenv/
+static/user_profile_page_settings/profileImages/
+static/user_profile_page_settings/img/
+/.DS_Store
