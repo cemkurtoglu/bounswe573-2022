@@ -1,4 +1,8 @@
 from django.contrib import admin
-# from .models import User
+from home_page.models import *
 
-# admin.site.register(User)
+admin.site.register(Comments)
+admin.site.register(Post)
+admin.site.register(PostDislikes)
+admin.site.register(PostLikes)
+admin.site.register(Tags)
