@@ -37,7 +37,6 @@ def upload_photo(request):
 
         if form.is_valid():
             form.save(commit=True)
-            print("Printing post: " , request.POST)
             return profile_page(request)
         else:
             print(form.errors)
