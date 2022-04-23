@@ -1,5 +1,6 @@
 {%load static%}
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,14 +97,20 @@
 
 				<div class="ui-block">
 					<!-- Post -->
+
+					{% block content %}  
+
+
+					{% for post in posts reversed %}
 					
 					<article class="hentry post">
 					
+						<a name=" {{user.id}}"></a>
 							<div class="post__author author vcard inline-items">
 								<img src="{{user.profileImage.url}}" alt="author">
 					
 								<div class="author-date">
-									<a class="h6 post__author-name fn" href="{% url 'user_profile_page_main:profile_page' %}">{{user.firstName}} {{user.lastName}}</a>
+									<a class="h6 post__author-name fn" href="{% url 'user_profile_page_main:profile_page' %}">{{post.author.firstName}} {{post.author.lastName}}</a>
 									<div class="post__date">
 										<time class="published" datetime="2017-03-24T18:18">
 											19 hours ago
@@ -133,27 +140,41 @@
 					
 							</div>
 					
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-								pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-								mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-								accusantium doloremque.
-							</p>
+							<p>{{post.content}}</p>
 					
 							<div class="post-additional-info inline-items">
 
-								<a href="#" class="post-add-icon inline-items">
+					
+							<form id="post-form-like" method="POST" enctype="multipart/form-data">
+								{% csrf_token %}
+								<input id = "postId" type="hidden" name="postId" value="{{post.id}}" />
+								<input id = "userId" type="hidden" name="userId" value="{{post.author.id}}" />
+
+								<button type="submit" style = "border: none;" class="post-add-icon inline-items">
 									<svg class="olymp-heart-icon">
 										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
 									</svg>
+							
 									<span>8</span>
-								</a>
+								
+									
+								</button>
+							</form>
+
+							<form id="post-form-dislike" method="POST" enctype="multipart/form-data">
+								{% csrf_token %}
+								<input id = "postId" type="hidden" name="postId" value="{{post.id}}" />
+								<input id = "userId" type="hidden" name="userId" value="{{post.author.id}}" />
 					
-								<a href="#" class="post-add-icon inline-items">
+								<button type="submit" style = "border: none;"  class="post-add-icon inline-items">
 									<svg class="olymp-heart-icon" transform="scale(1 -1)" height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 100 100" width="100%" xmlns="http://www.w3.org/2000/svg">
 										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
 									</svg>
 									<span>8</span>
-								</a>
+								</button>
+							</form>	
+
+							
 					
 								<div class="comments-shared">
 									<a href="#" class="post-add-icon inline-items">
@@ -203,7 +224,9 @@
 							</div>
 					
 						</article>
-					
+					{% endfor %}
+
+					{% endblock content%}
 
 					<!-- ... end Comment Form  -->				</div>
 
@@ -518,7 +541,7 @@
 </a>
 
 
-
+  
 
 
 
@@ -563,6 +586,45 @@
 
 <script src="{% static 'user_profile_page_settings/Bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
 
+
+
+<script type="text/javascript">
+    $(document).on('submit','#post-form-like',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "user_profile_page_main:post_like" %}',
+            data:
+            {
+                userId:$("#userId").val(),
+				postId:$("#postId").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                  alert('Saved');
+                    }
+            })
+        });
+    </script>
+
+<script type="text/javascript">
+    $(document).on('submit','#post-form-dislike',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "user_profile_page_main:post_dislike" %}',
+            data:
+            {
+				userId:$("#userId").val(),
+				postId:$("#postId").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                  alert('Saved');
+                    }
+            })
+        });
+    </script>
 
 </body>
 </html>

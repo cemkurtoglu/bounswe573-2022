@@ -23,8 +23,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
-    path('profile_settings/',include('user_profile_page_settings.urls'), name= 'user_profile_page_settings'), # profile_settings/<str:pk>/
-    path('profile/', include('user_profile_page_main.urls'), name= 'user_profile')
+    path('', home, name = 'home'),
+    path('profile_settings/',include('user_profile_page_settings.urls')), # profile_settings/<str:pk>/
+    path('profile/', include('user_profile_page_main.urls'))
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
