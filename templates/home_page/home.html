@@ -1,12 +1,1028 @@
+{%load static%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+	<title>coLearn</title>
+
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Main Font -->
+	<script src="{%static 'user_profile_page_settings/js/webfontloader.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Roboto:300,400,500,700:latin']
+			}
+		});
+	</script>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-reboot.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-grid.css' %}">
+	
+		<!-- Main Styles CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/main.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/fonts.min.css' %}">
+	
+
 </head>
 <body>
-    <h1>Hello World</h1>
+
+
+
+	{%  include 'user_profile_page_settings/navbar.html' %}
+
+
+    
+
+<div class="header-spacer"></div>
+
+
+
+<div class="container">
+
+    <!-- News Feed block  -->
+
+    <div class="ui-block">
+				
+        <!-- News Feed Form  -->
+        
+        <div class="news-feed-form">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
+        
+                        <svg class="olymp-status-icon"><use xlink:href="#olymp-status-icon"></use></svg>
+        
+                        <span>Question</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link inline-items" data-toggle="tab" href="#profile-1" role="tab" aria-expanded="false">
+        
+                        <svg class="olymp-multimedia-icon"><use xlink:href="#olymp-multimedia-icon"></use></svg>
+        
+                        <span>Multimedia</span>
+                    </a>
+                </li>
+        
+                <li class="nav-item">
+                    <a class="nav-link inline-items" data-toggle="tab" href="#blog-post" role="tab" aria-expanded="false">
+                        <svg class="olymp-blog-icon"><use xlink:href="#olymp-blog-icon"></use></svg>
+        
+                        <span>Blog Post</span>
+                    </a>
+                </li>
+
+				<li class="nav-item">
+                    <a class="nav-link inline-items" data-toggle="tab" href="#questionnaire" role="tab" aria-expanded="false">
+                        <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
+        
+                        <span>Questionnaire</span>
+                    </a>
+                </li>
+            </ul>
+        
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
+                    <form>
+                        <div class="author-thumb">
+                            <img src="{{user.profileImage.url}}" width="50" height="50" alignment="center" alt="author">
+                        </div>
+                        <div class="form-group with-icon label-floating is-empty">
+                            <label class="control-label">Share your question with us!!</label>
+                            <textarea class="form-control" placeholder=""></textarea>
+                        <span class="material-input"></span></div>
+                        <div class="add-options-message">
+                            <a href="#" class="options-message" data-toggle="tooltip" data-placement="top" data-original-title="TAG YOUR FRIENDS">
+                                <svg class="olymp-computer-icon"><use xlink:href="#olymp-computer-icon"></use></svg>
+                            </a>
+                            <button class="btn btn-primary btn-md-2">Post Question</button>
+                            <button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+        
+                        </div>
+        
+                    </form>
+                </div>
+        
+                <div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
+                    <form>
+                        <div class="author-thumb">
+                            <img src="{{user.profileImage.url}}" width="50" height="50" alignment="center" alt="author">
+                        </div>
+                        <div class="form-group with-icon label-floating is-empty">
+                            <label class="control-label">Share your lectures and more!!</label>
+                            <textarea class="form-control" placeholder=""></textarea>
+                        <span class="material-input"></span></div>
+                        <div class="add-options-message">
+                            <a href="#" class="options-message" data-toggle="tooltip" data-placement="top" data-original-title="ADD PHOTOS">
+                                <svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="#olymp-camera-icon"></use></svg>
+                            </a>
+                            <a href="#" class="options-message" data-toggle="tooltip" data-placement="top" data-original-title="TAG YOUR FRIENDS">
+                                <svg class="olymp-computer-icon"><use xlink:href="#olymp-computer-icon"></use></svg>
+                            </a>
+        
+                            <button class="btn btn-primary btn-md-2">Post Video</button>
+                            <button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+        
+                        </div>
+        
+                    </form>
+                </div>
+
+				<div class="tab-pane" id="blog-post" role="tabpanel" aria-expanded="true">
+
+					<div class="col col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
+						<div class="landing-item">
+							<div class="content">
+
+								<div class="overlay overlay-dark"></div>
+								<br>
+								<br>
+							
+								<a data-toggle="modal" data-target="#blog-post-popup" href="#" class="btn btn-control bg-blue">
+									<svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+								</a>
+								<a data-toggle="modal" data-target="#blog-post-popup" href="#" class="full-block"></a>
+							</div>
+							<div class="title">Create a Blog</div>
+								<br>
+								<br>
+						</div>
+					</div>
+
+
+					
+
+                </div>
+
+				<div class="tab-pane" id="questionnaire" role="tabpanel" aria-expanded="true">
+                    
+					<div class="col col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
+						<div class="landing-item">
+							<div class="content">
+
+								<div class="overlay overlay-dark"></div>
+								<br>
+								<br>
+							
+								<a data-toggle="modal" data-target="#edit-widget-pool" href="#" class="btn btn-control bg-blue">
+									<svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+								</a>
+								<a data-toggle="modal" data-target="#edit-widget-pool" href="#" class="full-block"></a>
+							</div>
+							<div class="title">Create a Quiz</div>
+								<br>
+								<br>
+						</div>
+					</div>
+
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- ... end News Feed Form  -->	
+            </div>
+
+    <!-- end of News Feed block -->
+	<div class="row">
+		<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+			<div class="clients-grid">
+
+				<ul class="cat-list-bg-style align-center sorting-menu">
+					<li class="cat-list__item active" data-filter=".explore"><a href="#" class="">Explore</a></li>
+					<li class="cat-list__item" data-filter=".home"><a href="#" class="">Home</a></li>
+					<li class="cat-list__item" data-filter=".social"><a href="#" class="">Social Spaces</a></li>
+				</ul>
+
+				<div class="row sorting-container" id="clients-grid-1" data-layout="masonry">
+
+					<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12  sorting-item explore">
+						<div class="ui-block">
+							
+							<article class="hentry post video">
+							
+								<div class="post__author author vcard inline-items">
+									<img src="img/avatar7-sm.jpg" alt="author">
+							
+									<div class="author-date">
+										<a class="h6 post__author-name fn" href="#">Marina Valentine</a> shared a <a href="#">link</a>
+										<div class="post__date">
+											<time class="published" datetime="2004-07-24T18:18">
+												March 4 at 2:05pm
+											</time>
+										</div>
+									</div>
+							
+									<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+										<ul class="more-dropdown">
+											<li>
+												<a href="#">Edit Post</a>
+											</li>
+											<li>
+												<a href="#">Delete Post</a>
+											</li>
+											<li>
+												<a href="#">Turn Off Notifications</a>
+											</li>
+											<li>
+												<a href="#">Select as Featured</a>
+											</li>
+										</ul>
+									</div>
+							
+								</div>
+							
+								<p>Hey <a href="#">Cindi</a>, you should really check out this new song by Iron Maid. The next time they come to the city we should totally go!</p>
+							
+								<div class="post-video">
+									<div class="video-thumb">
+										<img src="img/video-youtube1.jpg" alt="photo">
+										<a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video">
+											<svg class="olymp-play-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-play-icon"></use></svg>
+										</a>
+									</div>
+							
+									<div class="video-content">
+										<a href="#" class="h4 title">Iron Maid - ChillGroves</a>
+										<p>Lorem ipsum dolor sit amet, consectetur ipisicing elit, sed do eiusmod tempor incididunt
+											ut labore et dolore magna aliqua...
+										</p>
+										<a href="#" class="link-site">YOUTUBE.COM</a>
+									</div>
+								</div>
+							
+								<div class="post-additional-info inline-items">
+							
+									<a href="#" class="post-add-icon inline-items">
+										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+										<span>18</span>
+									</a>
+							
+									<ul class="friends-harmonic">
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic9.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic10.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic7.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic8.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic11.jpg" alt="friend">
+											</a>
+										</li>
+									</ul>
+							
+									<div class="names-people-likes">
+										<a href="#">Jenny</a>, <a href="#">Robert</a> and
+										<br>18 more liked this
+									</div>
+							
+									<div class="comments-shared">
+										<a href="#" class="post-add-icon inline-items">
+											<svg class="olymp-speech-balloon-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
+							
+											<span>0</span>
+										</a>
+							
+										<a href="#" class="post-add-icon inline-items">
+											<svg class="olymp-share-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use></svg>
+							
+											<span>16</span>
+										</a>
+									</div>
+							
+							
+								</div>
+							
+								<div class="control-block-button post-control-button">
+							
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-like-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use></svg>
+									</a>
+							
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+									</a>
+							
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-share-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use></svg>
+									</a>
+							
+								</div>
+							
+							</article>
+						</div>
+					</div>
+			
+					<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12  sorting-item home">
+						<div class="ui-block">
+							
+							<article class="hentry post video">
+							
+								<div class="post__author author vcard inline-items">
+									<img src="img/avatar7-sm.jpg" alt="author">
+							
+									<div class="author-date">
+										<a class="h6 post__author-name fn" href="#">Marina Valentine</a> shared a <a href="#">link</a>
+										<div class="post__date">
+											<time class="published" datetime="2004-07-24T18:18">
+												March 4 at 2:05pm
+											</time>
+										</div>
+									</div>
+							
+									<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+										<ul class="more-dropdown">
+											<li>
+												<a href="#">Edit Post</a>
+											</li>
+											<li>
+												<a href="#">Delete Post</a>
+											</li>
+											<li>
+												<a href="#">Turn Off Notifications</a>
+											</li>
+											<li>
+												<a href="#">Select as Featured</a>
+											</li>
+										</ul>
+									</div>
+							
+								</div>
+							
+								<p>Hey <a href="#">Cindi</a>, you should really check out this new song by Iron Maid. The next time they come to the city we should totally go!</p>
+							
+								<div class="post-video">
+									<div class="video-thumb">
+										<img src="img/video-youtube1.jpg" alt="photo">
+										<a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video">
+											<svg class="olymp-play-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-play-icon"></use></svg>
+										</a>
+									</div>
+							
+									<div class="video-content">
+										<a href="#" class="h4 title">Iron Maid - ChillGroves</a>
+										<p>Lorem ipsum dolor sit amet, consectetur ipisicing elit, sed do eiusmod tempor incididunt
+											ut labore et dolore magna aliqua...
+										</p>
+										<a href="#" class="link-site">YOUTUBE.COM</a>
+									</div>
+								</div>
+							
+								<div class="post-additional-info inline-items">
+							
+									<a href="#" class="post-add-icon inline-items">
+										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+										<span>18</span>
+									</a>
+							
+									<ul class="friends-harmonic">
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic9.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic10.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic7.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic8.jpg" alt="friend">
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="img/friend-harmonic11.jpg" alt="friend">
+											</a>
+										</li>
+									</ul>
+							
+									<div class="names-people-likes">
+										<a href="#">Jenny</a>, <a href="#">Robert</a> and
+										<br>18 more liked this
+									</div>
+							
+									<div class="comments-shared">
+										<a href="#" class="post-add-icon inline-items">
+											<svg class="olymp-speech-balloon-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
+							
+											<span>0</span>
+										</a>
+							
+										<a href="#" class="post-add-icon inline-items">
+											<svg class="olymp-share-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use></svg>
+							
+											<span>16</span>
+										</a>
+									</div>
+							
+							
+								</div>
+							
+								<div class="control-block-button post-control-button">
+							
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-like-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use></svg>
+									</a>
+							
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+									</a>
+							
+									<a href="#" class="btn btn-control">
+										<svg class="olymp-share-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use></svg>
+									</a>
+							
+								</div>
+							
+							</article>
+						</div>
+					</div>
+
+					<div class="container sorting-item social">
+						<div class="row">
+							<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
+								
+								<!-- Friend Item -->
+								
+								<div class="friend-item friend-groups create-group" data-mh="friend-groups-item">
+								
+									<a href="#" class="full-block" data-toggle="modal" data-target="#create-friend-group-1"></a>
+									<div class="content">
+								
+										<a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-1">
+											<svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+										</a>
+								
+										<div class="author-content">
+											<a href="#" class="h5 author-name">New Space</a>
+											<div class="country">Add A Social Learning Space</div>
+										</div>
+								
+									</div>
+								
+								</div>
+								
+								<!-- ... end Friend Item -->		
+							</div>
+					
+							<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
+								<div class="ui-block" data-mh="friend-groups-item">
+									
+									<!-- Friend Item -->
+									
+									<div class="friend-item friend-groups">
+									
+										<div class="friend-item-content">
+									
+											<div class="more">
+												<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+												<ul class="more-dropdown">
+													<li>
+														<a href="#">Report Profile</a>
+													</li>
+													<li>
+														<a href="#">Block Profile</a>
+													</li>
+													<li>
+														<a href="#">Turn Off Notifications</a>
+													</li>
+												</ul>
+											</div>
+											<div class="friend-avatar">
+												<div class="author-thumb">
+													<img src="img/logo.png" alt="Olympus">
+												</div>
+												<div class="author-content">
+													<a href="#" class="h5 author-name">My Family</a>
+													<div class="country">6 Friends in the Group</div>
+												</div>
+											</div>
+									
+											<ul class="friends-harmonic">
+												<li>
+													<a href="#">
+														<img src="img/friend-harmonic5.jpg" alt="friend">
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<img src="img/friend-harmonic10.jpg" alt="friend">
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<img src="img/friend-harmonic7.jpg" alt="friend">
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<img src="img/friend-harmonic8.jpg" alt="friend">
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<img src="img/friend-harmonic2.jpg" alt="friend">
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<img src="img/avatar30-sm.jpg" alt="author">
+													</a>
+												</li>
+											</ul>
+									
+									
+											<div class="control-block-button">
+												<a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-add-friends">
+													<svg class="olymp-happy-faces-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+												</a>
+									
+												<a href="#" class="btn btn-control btn-grey-lighter">
+													<svg class="olymp-settings-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-settings-icon"></use></svg>
+												</a>
+									
+											</div>
+										</div>
+									</div>
+									
+									<!-- ... end Friend Item -->
+								</div>
+							</div>
+							
+
+					
+						</div>
+					</div>
+										
+				
+					
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{%  include 'home_page/popup_blog_post.html' %}
+
+{%  include 'home_page/popup_questionnaire.html' %}
+
+
+
+<!-- Window-popup Create Friends Group -->
+
+<div class="modal fade" id="create-friend-group-1" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1" aria-hidden="true">
+	<div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">
+		<div class="modal-content">
+			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+				<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+			</a>
+			<div class="modal-header">
+				<h6 class="title">Create Friend Group</h6>
+			</div>
+
+			<div class="modal-body">
+				<form class="form-group label-floating">
+					<label class="control-label">Group Name</label>
+					<input class="form-control" placeholder="" value="Highschool Friends" type="text">
+				</form>
+
+				<form class="form-group with-button">
+					<input class="form-control" placeholder="" value="Group Avatar (120x120px min)" type="text">
+
+					<button class="bg-grey">
+						<svg class="olymp-computer-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+					</button>
+
+				</form>
+
+				<form class="form-group label-floating is-select">
+					<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+
+					<select class="selectpicker form-control style-2 show-tick" multiple data-max-options="2" data-live-search="true">
+						<option title="Green Goo Rock" data-content='<div class="inline-items">
+											<div class="author-thumb">
+												<img src="img/avatar52-sm.jpg" alt="author">
+											</div>
+												<div class="h6 author-title">Green Goo Rock</div>
+
+											</div>'>Green Goo Rock
+						</option>
+
+						<option title="Mathilda Brinker" data-content='<div class="inline-items">
+												<div class="author-thumb">
+													<img src="img/avatar74-sm.jpg" alt="author">
+												</div>
+												<div class="h6 author-title">Mathilda Brinker</div>
+											</div>'>Mathilda Brinker
+						</option>
+
+						<option title="Marina Valentine" data-content='<div class="inline-items">
+												<div class="author-thumb">
+													<img src="img/avatar48-sm.jpg" alt="author">
+												</div>
+												<div class="h6 author-title">Marina Valentine</div>
+											</div>'>Marina Valentine
+						</option>
+
+						<option title="Dave Marinara" data-content='<div class="inline-items">
+												<div class="author-thumb">
+													<img src="img/avatar75-sm.jpg" alt="author">
+												</div>
+												<div class="h6 author-title">Dave Marinara</div>
+											</div>'>Dave Marinara
+						</option>
+
+						<option title="Rachel Howlett" data-content='<div class="inline-items">
+												<div class="author-thumb">
+													<img src="img/avatar76-sm.jpg" alt="author">
+												</div>
+												<div class="h6 author-title">Rachel Howlett</div>
+											</div>'>Rachel Howlett
+						</option>
+
+					</select>
+				</form>
+
+				<a href="#" class="btn btn-blue btn-lg full-width">Create Group</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ... end Window-popup Create Friends Group -->
+
+
+<!-- Window-popup Create Friends Group Add Friends -->
+
+<div class="modal fade" id="create-friend-group-add-friends" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-add-friends" aria-hidden="true">
+	<div class="modal-dialog window-popup create-friend-group create-friend-group-add-friends" role="document">
+		<div class="modal-content">
+			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+				<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+			</a>
+
+			<div class="modal-header">
+				<h6 class="title">Add Friends to “Freelance Clients” Group</h6>
+			</div>
+
+			<div class="modal-body">
+			<form class="form-group label-floating is-select">
+
+				<select class="selectpicker form-control style-2 show-tick" multiple data-max-options="2" data-live-search="true">
+					<option title="Green Goo Rock" data-content='<div class="inline-items">
+										<div class="author-thumb">
+											<img src="img/avatar52-sm.jpg" alt="author">
+										</div>
+											<div class="h6 author-title">Green Goo Rock</div>
+
+										</div>'>Green Goo Rock
+					</option>
+
+					<option title="Mathilda Brinker" data-content='<div class="inline-items">
+											<div class="author-thumb">
+												<img src="img/avatar74-sm.jpg" alt="author">
+											</div>
+											<div class="h6 author-title">Mathilda Brinker</div>
+										</div>'>Mathilda Brinker
+					</option>
+
+					<option title="Marina Valentine" data-content='<div class="inline-items">
+											<div class="author-thumb">
+												<img src="img/avatar48-sm.jpg" alt="author">
+											</div>
+											<div class="h6 author-title">Marina Valentine</div>
+										</div>'>Marina Valentine
+					</option>
+
+					<option title="Dave Marinara" data-content='<div class="inline-items">
+											<div class="author-thumb">
+												<img src="img/avatar75-sm.jpg" alt="author">
+											</div>
+											<div class="h6 author-title">Dave Marinara</div>
+										</div>'>Dave Marinara
+					</option>
+
+					<option title="Rachel Howlett" data-content='<div class="inline-items">
+											<div class="author-thumb">
+												<img src="img/avatar76-sm.jpg" alt="author">
+											</div>
+											<div class="h6 author-title">Rachel Howlett</div>
+										</div>'>Rachel Howlett
+					</option>
+
+				</select>
+			</form>
+
+			<a href="#" class="btn btn-blue btn-lg full-width">Save Changes</a>
+		</div>
+		</div>
+	</div>
+</div>
+
+<!-- ... end Window-popup Create Friends Group Add Friends -->
+
+
+<!-- Window-popup Update Header Photo -->
+
+<div class="modal fade" id="update-header-photo" tabindex="-1" role="dialog" aria-labelledby="update-header-photo" aria-hidden="true">
+	<div class="modal-dialog window-popup update-header-photo" role="document">
+		<div class="modal-content">
+			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+				<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+			</a>
+
+			<div class="modal-header">
+				<h6 class="title">Update Header Photo</h6>
+			</div>
+
+			<div class="modal-body">
+				<a href="#" class="upload-photo-item">
+				<svg class="olymp-computer-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+
+				<h6>Upload Photo</h6>
+				<span>Browse your computer.</span>
+			</a>
+
+				<a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
+
+			<svg class="olymp-photos-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
+
+			<h6>Choose from My Photos</h6>
+			<span>Choose from your uploaded photos</span>
+		</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- ... end Window-popup Update Header Photo -->
+
+<!-- Window-popup Choose from my Photo -->
+
+<div class="modal fade" id="choose-from-my-photo" tabindex="-1" role="dialog" aria-labelledby="choose-from-my-photo" aria-hidden="true">
+	<div class="modal-dialog window-popup choose-from-my-photo" role="document">
+
+		<div class="modal-content">
+			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+				<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+			</a>
+			<div class="modal-header">
+				<h6 class="title">Choose from My Photos</h6>
+
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">
+							<svg class="olymp-photos-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">
+							<svg class="olymp-albums-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-albums-icon"></use></svg>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="modal-body">
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
+
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo1.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo2.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo3.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo4.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo5.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo6.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo7.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo8.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<div class="radio">
+								<label class="custom-radio">
+									<img src="img/choose-photo9.jpg" alt="photo">
+									<input type="radio" name="optionsRadios">
+								</label>
+							</div>
+						</div>
+
+
+						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
+						<a href="#" class="btn btn-primary btn-lg btn--half-width">Confirm Photo</a>
+
+					</div>
+					<div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
+
+						<div class="choose-photo-item" data-mh="choose-item">
+							<figure>
+								<img src="img/choose-photo10.jpg" alt="photo">
+								<figcaption>
+									<a href="#">South America Vacations</a>
+									<span>Last Added: 2 hours ago</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<figure>
+								<img src="img/choose-photo11.jpg" alt="photo">
+								<figcaption>
+									<a href="#">Photoshoot Summer 2016</a>
+									<span>Last Added: 5 weeks ago</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<figure>
+								<img src="img/choose-photo12.jpg" alt="photo">
+								<figcaption>
+									<a href="#">Amazing Street Food</a>
+									<span>Last Added: 6 mins ago</span>
+								</figcaption>
+							</figure>
+						</div>
+
+						<div class="choose-photo-item" data-mh="choose-item">
+							<figure>
+								<img src="img/choose-photo13.jpg" alt="photo">
+								<figcaption>
+									<a href="#">Graffity & Street Art</a>
+									<span>Last Added: 16 hours ago</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<figure>
+								<img src="img/choose-photo14.jpg" alt="photo">
+								<figcaption>
+									<a href="#">Amazing Landscapes</a>
+									<span>Last Added: 13 mins ago</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="choose-photo-item" data-mh="choose-item">
+							<figure>
+								<img src="img/choose-photo15.jpg" alt="photo">
+								<figcaption>
+									<a href="#">The Majestic Canyon</a>
+									<span>Last Added: 57 mins ago</span>
+								</figcaption>
+							</figure>
+						</div>
+
+
+						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
+						<a href="#" class="btn btn-primary btn-lg disabled btn--half-width">Confirm Photo</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- ... end Window-popup Choose from my Photo -->
+
+
+<a class="back-to-top" href="#">
+	<img src="{% static 'user_profile_page_settings/svg-icons/back-to-top.svg' %}" alt="arrow" class="back-icon">
+</a>
+
+
+
+
+
+<!-- JS Scripts -->
+<script src="{% static 'user_profile_page_settings/js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.appear.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.matchHeight.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/svgxuse.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Headroom.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/velocity.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ScrollMagic.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.countTo.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/popper.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/material.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/smooth-scroll.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/selectize.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/swiper.jquery.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/moment.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/daterangepicker.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/simplecalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/fullcalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/isotope.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ajax-pagination.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/chartjs-plugin-deferred.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/circle-progress.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/loader.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/run-chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.gifplayer.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-and-player.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-playlist-plugin.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/js/base-init.js' %}"></script>
+<script defer src="{% static 'user_profile_page_settings/fonts/fontawesome-all.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/Bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+
 </body>
 </html>
