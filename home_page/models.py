@@ -15,14 +15,24 @@ class Tags(models.Model):
 
 class Post(models.Model):
 
-    title = models.CharField(max_length=100)
+    types = [
+        ('Question','Question'),
+        ('Multimedia','Multimedia'),
+        ('Blog','Blog'),
+        ('Questionnaire','Questionnaire')
+    ]
+
+    title = models.CharField(max_length=100, null = True,blank = True)
     video = models.FileField(null = True,blank = True, upload_to="static/home_page/post_content")
+    blogImage = models.ImageField(null = True,blank = True,upload_to='static/user_profile_page_settings/profileImages/')
+    type = models.CharField(default="Question",max_length=20,choices=types)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField(max_length=280)
+    content = models.CharField(max_length=280,null = True,blank = True)
+    blogContent = models.CharField(max_length=10000,null = True,blank = True)
     tag = models.ForeignKey(Tags,on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return str(self.id) + "_" + self.title +'_posted_by:_' + str(self.author)
+        return str(self.id) +'_posted_by:_' + str(self.author)
 
 
 class PostLikes(models.Model):

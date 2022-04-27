@@ -5,7 +5,15 @@
 <header class="header" id="site-header">
 
 	<div class="page-title">
-		<h6>your account</h6>
+		<a href="{% url 'home' %}" class="logo">
+			<div class="img-wrap">
+				<img loading="lazy" src="{% static 'user_profile_page_settings/profileImages/bounlogo.png' %}" width="34" height="34" alt="Olympus">
+			</div>
+			<div class="title-block" style = "padding-left: 20px;"}>
+				<h6 class="logo-title">Boun Learn</h6>
+				<div class="sub-title">SOCIAL LEARNING</div>
+			</div>
+		</a>
 	</div>
 
 	<div class="header-content-wrapper">

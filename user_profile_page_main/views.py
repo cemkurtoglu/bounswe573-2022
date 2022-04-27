@@ -101,6 +101,7 @@ class LikesAndDislikes:
                 if form.cleaned_data['userId'] == like.userId and form.cleaned_data['postId'] == like.postId:
                     self.like_id_to_be_deleted = like.id
                     self.post_id_to_be_processed = like.postId
+                    print(self.post_id_to_be_processed)
                     return True
                 else:
                     return False
