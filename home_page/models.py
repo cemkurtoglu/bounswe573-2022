@@ -23,7 +23,7 @@ class Post(models.Model):
     ]
 
     title = models.CharField(max_length=100, null = True,blank = True)
-    video = models.FileField(null = True,blank = True, upload_to="static/home_page/post_content")
+    video = models.FileField(null = True,blank = True, upload_to="static/home_page/post_content/")
     blogImage = models.ImageField(null = True,blank = True,upload_to='static/user_profile_page_settings/profileImages/')
     type = models.CharField(default="Question",max_length=20,choices=types)
     author = models.ForeignKey(User, on_delete=models.CASCADE)

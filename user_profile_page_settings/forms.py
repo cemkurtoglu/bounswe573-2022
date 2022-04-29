@@ -9,4 +9,4 @@ class ProfileInformationForm(forms.ModelForm):
 class ProfileInformationForm_Image(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["profileImage","backroundImage"]
+        fields = ["profileImage","backgroundImage"]

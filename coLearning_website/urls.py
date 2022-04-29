@@ -23,7 +23,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name = 'home'),
+    path('', include('home_page.urls')),
     path('profile_settings/',include('user_profile_page_settings.urls')), # profile_settings/<str:pk>/
     path('profile/', include('user_profile_page_main.urls'))
 ]

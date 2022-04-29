@@ -93,7 +93,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form id = "question-form" method="POST" enctype="multipart/form-data" onsubmit="window.location.reload()">
 						{% csrf_token %}
                         <div class="author-thumb">
                             <img src="{{user.profileImage.url}}" width="40" height="40" alignment="center" alt="author">
@@ -126,34 +126,33 @@
 				
         
                 <div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form id = "video-form" method="POST" enctype="multipart/form-data" onsubmit="window.location.reload()">
 						{% csrf_token %}
                         <div class="author-thumb">
                             <img src="{{user.profileImage.url}}" width="40" height="40" alignment="center" alt="author">
                         </div>
                         <div class="form-group with-icon label-floating is-empty">
                             <label class="control-label">Share your lectures and more!!</label>
-							<textarea id="id_content" name="content" class="form-control" placeholder=""></textarea>
-							<span class="material-input"></span></div>
+                            <textarea id="id_video_content" name="content" class="form-control" placeholder=""></textarea>
+								<span class="material-input"></span></div>
 
-							<div class="add-options-message">
-								<a href="#" class="options-message" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ADD PHOTOS">
-									<svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="#olymp-camera-icon"></use></svg>
-								</a>
+								<div class="add-options-message">
+									<a href="#" class="options-message" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ADD VIDEO">
+										<svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="#olymp-camera-icon"></use></svg>
+									</a>
 
-								<fieldset class="options-message">
-										<select id= "id_tag" name="tag" class="form-select">
+									<fieldset class="options-message">
+										<select id= "id_video_tag" name="tag" class="form-select">
 											<option selected disabled = 'true'>-- Select A Tag --</option>
 											{% for questiontag in tags %}
 												<option value="{{questiontag.id}}"> {{questiontag}} </option>
 											{% endfor %}
 											
 										</select>
-								</fieldset>
+									</fieldset>
 	
-								<input id = "id_type" type="hidden" name="type" value="Multimedia" />
-								<input id = "id_author" type="hidden" name="author" value="{{user.id}}" />
-								<input id = "id_video" type="hidden" name="video" value='{{questionPost.video}}'/>
+								<input id = "id_video_type" type="hidden" name="type" value="Multimedia" />
+								<input id = "id_video_author" type="hidden" name="author" value="{{user.id}}" />
 	
 								<button type="submit" class="btn btn-primary btn-md-2">Post A Video</button>
 								<button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
@@ -716,20 +715,19 @@
 
 			<div class="container">
 				<div class="row">
-						<div class="contianer">
+						<div class="container">
 			
-								{% block content %}  
 			
 								<form >
 							
 									<div class="container">
 										<br>
-										{{questionPost.video}}
+										<!-- {{postForm.video}} -->
+										<input id = "id_video_video" name="video" type="file" />
 										<br>
 											<!-- <button type = "button" class="btn btn-primary btn-md-2 full-width">Save all Changes</button> -->
 									</form>
 								
-								{% endblock content %}  
 								</div>
 								
 			
@@ -937,6 +935,8 @@
 
 
 
+
+
 <!-- JS Scripts -->
 <script src="{% static 'user_profile_page_settings/js/jquery-3.2.1.js' %}"></script>
 <script src="{% static 'user_profile_page_settings/js/jquery.appear.js' %}"></script>
@@ -978,6 +978,94 @@
 
 <script src="{% static 'user_profile_page_settings/Bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
 
+<script type="text/javascript">
+    $(document).on('submit','#question-form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "home_page:post_question" %}',
+            data:
+            {
+				tag:$("#id_tag").val(),
+				type:$("#id_type").val(),
+				author:$("#id_author").val(),
+				content:$("#id_content").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                  alert('Saved');
+                    }
+            })
+        });
+    </script>
+
+<script type="text/javascript">
+    $(document).on('submit','#video-form',function(e){
+		// var f_obj = $("#id_video_video").get(0).files[0]; // get the upload file information
+       	// 	console.log("File object:",f_obj);
+        // 	console.log("The file name is:",f_obj.name);
+        // 	console.log("The file size is:",f_obj.size);
+		// var	tag = $("#id_video_tag").val();
+		// var	type = $("#id_video_type").val();
+		// var	author = $("#id_video_author").val();
+		// var	content = $("#id_video_content").val();
+        // var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val()
+
+        // var data = new FormData();                                      //Create formdata objects to facilitate file transfer to the back end
+        // data.append("video",f_obj)                                        //To add (encapsulate) a file object to a formdata object
+		// data.append('tag',tag)
+		// data.append("type",type)
+		// data.append('author',author)
+		// data.append('content','content')
+		// data.append('csrfmiddlewaretoken',csrfmiddlewaretoken)
+		
+		
+		// console.log('tag ' + tag)
+		// console.log('type ' + type)
+		// console.log('author ' + author)
+		// console.log('content ' + content)
+		// console.log('csrfmiddlewaretoken ' + csrfmiddlewaretoken)
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "home_page:post_video" %}',
+            data:
+            {
+				tag:$("#id_video_tag").val(),
+				type:$("#id_video_type").val(),
+				author:$("#id_video_author").val(),
+				content:$("#id_video_content").val(),
+				video:$("#id_video_video").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                  alert('Saved');
+                    }
+            })
+        });
+    </script>
+
+<!-- <script type="text/javascript">
+    $(document).on('submit','#blog-form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "home_page:post_blog" %}',
+            data:
+            {
+				blogContent:$('#id_blog_content').val(),
+				title:$('#id_blog_title').val(),
+				tag:$("#id_blog_tag").val(),
+				type:$("#id_blog_type").val(),
+				author:$("#id_blog_author").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                  alert('Saved');
+                    }
+            })
+        });
+    </script> -->
 
 </body>
 </html>
