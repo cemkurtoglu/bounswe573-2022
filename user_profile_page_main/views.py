@@ -1,11 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from home_page.models import PostLikes
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, get_object_or_404
+from home_page.models import PostLikes, Post, PostDislikes
 from user_profile_page_settings.models import User
-from home_page.models import PostLikes, PostDislikes
 from user_profile_page_main.forms import LikeAPost,DisLikeAPost
 from django.template.defaulttags import register
-
 
 
 # Create your views here.
@@ -13,12 +11,56 @@ def profile_page(request):
 
     user = User.objects.get(id=1)
     posts = user.post_set.all()
-    likes = PostLikes.objects.all()
-    disLikes = PostDislikes.objects.all()
-    engagements = LikesAndDislikes.total_likes_and_dislikes(posts, likes, disLikes)
 
-    context = {'user':user, 'posts':posts, 'likes':likes, 'disLikes':disLikes, 'engagements':engagements}
+    context = {'user':user, 'posts':posts }
     return render(request,'user_profile_page_main/profile_page_main.html',context)
+
+
+def post_reaction(request):
+    if request.method == "POST":
+        dummy_user = User.objects.get(id=1)
+        post_id = request.POST.get('post_id', None)
+        opinion = request.POST.get('opinion', None)  # like or dislike button clicked
+
+        post = get_object_or_404(Post, id=post_id)
+
+        try:
+            # If child DisLike model doesn't exit then create
+            post.dis_likes
+        except Post.dis_likes.RelatedObjectDoesNotExist as identifier:
+            PostDislikes.objects.create(postId=post)
+
+        try:
+            # If child Like model doesnot exit then create
+            post.likes
+        except Post.likes.RelatedObjectDoesNotExist as identifier:
+            PostLikes.objects.create(postId=post)
+
+        if opinion.lower() == 'like':
+
+            if dummy_user in post.likes.userId.all(): # use request.user for real user
+                post.likes.userId.remove(dummy_user)
+            else:
+                post.likes.userId.add(dummy_user)
+                post.dis_likes.userId.remove(dummy_user)
+
+        elif opinion.lower() == 'dis_like':
+
+            if dummy_user in post.dis_likes.userId.all():
+                post.dis_likes.userId.remove(dummy_user)
+            else:
+                post.dis_likes.userId.add(dummy_user)
+                post.likes.userId.remove(dummy_user)
+        else:
+            return JsonResponse({"error": "invalid choice"})
+        return JsonResponse({
+            "success": True,
+            "like_count": post.get_total_likes(),
+            "dislike_count": post.get_total_dis_likes()
+        })
+    else:
+        return JsonResponse({"error": "invalid request"})
+
 
 def post_like(request):
     postLikes = LikesAndDislikes(request)

@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import User
 from home_page.forms import PostForm, BlogPostForm
 from home_page.models import Tags
+from django.views.decorators.csrf import csrf_exempt
 import os
 
 def home(request):
@@ -36,11 +37,8 @@ def post_question(request):
         else:
             print(postForm.errors)
 
+@csrf_exempt
 def post_video(request):
-    
-    user = User.objects.get(id=1)
-    postForm = PostForm(request.POST or None,instance=user)
-
 
     if request.method == "POST":
         print("\n-------------------\n")
@@ -48,14 +46,14 @@ def post_video(request):
         if postForm.is_valid():
             postForm.save(commit=True)
             print("Printing post: " , request.POST)
-            postForm = PostForm()
             return HttpResponse("Success")
         else:
             print(postForm.errors.as_json)
 
+
+@csrf_exempt
 def post_blog(request):
-    user = User.objects.get(id=1)
-    postBlog = BlogPostForm(request.POST, request.FILES, instance=user)
+    postBlog = BlogPostForm(request.POST, request.FILES)
     if request.method == "POST":
         print("\n-------------------\n")
         if postBlog.is_valid():

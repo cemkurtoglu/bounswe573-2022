@@ -49,7 +49,7 @@
 			<div class="ui-block">
 				<div class="top-header">
 					<div class="top-header-thumb">
-						<img src="{{user.backroundImage.url}}" width ="1920" height= "640" alignment="center" alt="nature">
+						<img src="{{user.backgroundImage.url}}" width ="1920" height= "640" alignment="center" alt="nature">
 					</div>
 					<div class="profile-section">
 						<div class="control-block-button">
@@ -148,14 +148,14 @@
 							<form id="post-form-like" method="POST" enctype="multipart/form-data">
 								{% csrf_token %}
 								<input id = "postId" type="hidden" name="postId" value="{{post.id}}" />
-								<input id = "userId" type="hidden" name="userId" value="{{post.author.id}}" />
+								<input id = "opinion" type="hidden" name="opinion" value="like" />
 
 								<button type="submit" style = "border: none;" class="post-add-icon inline-items">
 									<svg class="olymp-heart-icon">
 										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
 									</svg>
 							
-									<span>8</span>
+									<span id="like_count">{{ post.get_total_likes | default:"0" }}</span>
 								
 									
 								</button>
@@ -164,13 +164,13 @@
 							<form id="post-form-dislike" method="POST" enctype="multipart/form-data">
 								{% csrf_token %}
 								<input id = "postId" type="hidden" name="postId" value="{{post.id}}" />
-								<input id = "userId" type="hidden" name="userId" value="{{post.author.id}}" />
+								<input id = "opinion" type="hidden" name="opinion" value="dis_like" />
 					
-								<button type="submit" style = "border: none;"  class="post-add-icon inline-items">
+								<button id="like-button" type="submit" style = "border: none;"  class="post-add-icon inline-items">
 									<svg class="olymp-heart-icon" transform="scale(1 -1)" height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 100 100" width="100%" xmlns="http://www.w3.org/2000/svg">
 										<use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
 									</svg>
-									<span>8</span>
+									<span id="dislike_count">{{ post.get_total_dis_likes | default:"0" }}</span>
 								</button>
 							</form>	
 
@@ -591,40 +591,46 @@
 <script type="text/javascript">
     $(document).on('submit','#post-form-like',function(e){
         e.preventDefault();
+		var postId = $("input[name='postId']",this).val();
+		var opinion = $("input[name='opinion']",this).val();
+		var csrfToken = $("input[name='csrfmiddlewaretoken']",this).val();
+		var likeSpan = $(this).find("#like_count");
         $.ajax({
             type:'POST',
-            url:'{% url "user_profile_page_main:post_like" %}',
-            data:
-            {
-                userId:$("#userId").val(),
-				postId:$("#postId").val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            url:'{% url "user_profile_page_main:post_reaction" %}',
+            data: {
+				post_id:postId,
+                opinion:opinion,
+                csrfmiddlewaretoken:csrfToken
             },
-            success:function(){
-                  alert('Saved');
-                    }
-            })
-        });
-    </script>
+            success:function(resp){
+				$(likeSpan).text(resp.like_count)
+			}
+		})
+	});
+</script>
 
 <script type="text/javascript">
     $(document).on('submit','#post-form-dislike',function(e){
         e.preventDefault();
+		var postId = $("input[name='postId']",this).val();
+		var opinion = $("input[name='opinion']",this).val();
+		var csrfToken = $("input[name='csrfmiddlewaretoken']",this).val();
+		var dislikeSpan = $(this).find("#dislike_count");
         $.ajax({
             type:'POST',
-            url:'{% url "user_profile_page_main:post_dislike" %}',
-            data:
-            {
-				userId:$("#userId").val(),
-				postId:$("#postId").val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            url:'{% url "user_profile_page_main:post_reaction" %}',
+            data:{
+				post_id:postId,
+                opinion:opinion,
+                csrfmiddlewaretoken:csrfToken
             },
-            success:function(){
-                  alert('Saved');
-                    }
-            })
-        });
-    </script>
+            success:function(resp){
+				$(dislikeSpan).text(resp.dislike_count)
+			}
+		})
+	});
+</script>
 
 </body>
 </html>

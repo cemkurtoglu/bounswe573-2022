@@ -12,7 +12,6 @@ class Tags(models.Model):
         return self.name
 
 
-
 class Post(models.Model):
 
     types = [
@@ -34,22 +33,29 @@ class Post(models.Model):
     def __str__(self) -> str:
         return str(self.id) +'_posted_by:_' + str(self.author)
 
+    def get_total_likes(self):
+        return self.likes.userId.count()
+
+    def get_total_dis_likes(self):
+        return self.dis_likes.userId.count()
+
 
 class PostLikes(models.Model):
 
-    postId = models.ForeignKey(Post, on_delete=models.CASCADE)
-    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    postId = models.OneToOneField(Post, related_name="likes", on_delete=models.CASCADE)
+    userId = models.ManyToManyField(User, related_name="post_likes")
+
     def __str__(self) -> str:
         return str(self.postId) + "_liked_by_" + str(self.userId)
 
 
 class PostDislikes(models.Model):
 
-    postId = models.ForeignKey(Post, on_delete=models.CASCADE)
-    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    postId = models.OneToOneField(Post, related_name="dis_likes", on_delete=models.CASCADE)
+    userId = models.ManyToManyField(User, related_name="post_dis_likes")
+
     def __str__(self) -> str:
         return str(self.postId) + "_disliked_by_" + str(self.userId)
-
 
 
 class Comments(models.Model):

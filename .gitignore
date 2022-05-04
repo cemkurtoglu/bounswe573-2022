@@ -3,3 +3,13 @@ virtualenv/
 static/user_profile_page_settings/profileImages/
 static/user_profile_page_settings/img/
 /.DS_Store
+media/static/.DS_Store
+media/static/home_page/post_content/
+static/.DS_Store
+.gitignore
+templates/.DS_Store
+.gitignore
+user_profile_page_settings/.DS_Store
+home_page/.DS_Store
+static/.DS_Store
+static/user_profile_page_settings/.DS_Store

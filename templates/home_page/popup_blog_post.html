@@ -57,20 +57,19 @@
 						<div class="overlay"></div>
 					</div>
 
-					<form id = "blog-form" method="POST"  action="{% url 'home_page:post_blog' %}" enctype="multipart/form-data">
+					<form id = "blog-form" method="POST" enctype="multipart/form-data">
 						{% csrf_token %}
 
 						<label class="control-label">Change Blog Image</label>
 
 						<div class="form-group label-floating is-empty">
-								{{postBlog.blogImage}}
-
+							{{postBlog.blogImage}}
 						</div>
 					
 
 						<div class="form-group label-floating is-empty">
 							<label class="control-label">Blog Title</label>
-							{{postBlog.title}}
+							<input type="text" name="title" value="" class="form-control" required="" id="id_blog_title">
 						<span class="material-input"></span>
 						</div>
 

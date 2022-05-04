@@ -131,7 +131,10 @@
                         <div class="author-thumb">
                             <img src="{{user.profileImage.url}}" width="40" height="40" alignment="center" alt="author">
                         </div>
-                        <div class="form-group with-icon label-floating is-empty">
+						<div>
+						<input id = "id_video_video" name="video" type="file" style="top: 60px;position: relative;" />
+						</div>
+                        <div class="form-group with-icon label-floating is-empty" style="top: 55px; margin-bottom: 65px;">
                             <label class="control-label">Share your lectures and more!!</label>
                             <textarea id="id_video_content" name="content" class="form-control" placeholder=""></textarea>
 								<span class="material-input"></span></div>
@@ -723,7 +726,7 @@
 									<div class="container">
 										<br>
 										<!-- {{postForm.video}} -->
-										<input id = "id_video_video" name="video" type="file" />
+										{% comment %} <input id = "id_video_video" name="video" type="file" /> {% endcomment %}
 										<br>
 											<!-- <button type = "button" class="btn btn-primary btn-md-2 full-width">Save all Changes</button> -->
 									</form>
@@ -1001,71 +1004,55 @@
 
 <script type="text/javascript">
     $(document).on('submit','#video-form',function(e){
-		// var f_obj = $("#id_video_video").get(0).files[0]; // get the upload file information
-       	// 	console.log("File object:",f_obj);
-        // 	console.log("The file name is:",f_obj.name);
-        // 	console.log("The file size is:",f_obj.size);
-		// var	tag = $("#id_video_tag").val();
-		// var	type = $("#id_video_type").val();
-		// var	author = $("#id_video_author").val();
-		// var	content = $("#id_video_content").val();
-        // var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val()
-
-        // var data = new FormData();                                      //Create formdata objects to facilitate file transfer to the back end
-        // data.append("video",f_obj)                                        //To add (encapsulate) a file object to a formdata object
-		// data.append('tag',tag)
-		// data.append("type",type)
-		// data.append('author',author)
-		// data.append('content','content')
-		// data.append('csrfmiddlewaretoken',csrfmiddlewaretoken)
-		
-		
-		// console.log('tag ' + tag)
-		// console.log('type ' + type)
-		// console.log('author ' + author)
-		// console.log('content ' + content)
-		// console.log('csrfmiddlewaretoken ' + csrfmiddlewaretoken)
-        e.preventDefault();
+		e.preventDefault();
+		var formdata = new FormData();
+		formdata.append("video", $('#id_video_video').prop('files')[0]);
+		formdata.append("content", $('#id_video_content').val());
+		formdata.append("tag", $('#id_video_tag').val());
+		formdata.append("type", $('#id_video_type').val());
+		formdata.append("author", $('#id_video_author').val());
+		formdata.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val())
         $.ajax({
             type:'POST',
             url:'{% url "home_page:post_video" %}',
-            data:
-            {
-				tag:$("#id_video_tag").val(),
-				type:$("#id_video_type").val(),
-				author:$("#id_video_author").val(),
-				content:$("#id_video_content").val(),
-				video:$("#id_video_video").val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
-            },
+            data:formdata,
+			cache: false,
+        	contentType: false,
+        	processData: false,
+			enctype: 'multipart/form-data',
             success:function(){
-                  alert('Saved');
-                    }
-            })
-        });
-    </script>
+				alert('Saved');
+			}
+		})
+	});
+</script>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
+	
     $(document).on('submit','#blog-form',function(e){
         e.preventDefault();
+		var formdata = new FormData();
+		formdata.append("blogImage", $('#id_blogImage').prop('files')[0]);
+		formdata.append("blogContent", $('#id_blogContent').val());
+		formdata.append("title", $('#id_blog_title').val());
+		formdata.append("tag", $('#id_blog_tag').val());
+		formdata.append("type", $('#id_blog_type').val());
+		formdata.append("author", $('#id_blog_author').val());
+		formdata.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val())
         $.ajax({
             type:'POST',
             url:'{% url "home_page:post_blog" %}',
-            data:
-            {
-				blogContent:$('#id_blog_content').val(),
-				title:$('#id_blog_title').val(),
-				tag:$("#id_blog_tag").val(),
-				type:$("#id_blog_type").val(),
-				author:$("#id_blog_author").val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
-            },
+            data: formdata,
+    		cache: false,
+        	contentType: false,
+        	processData: false,
+			enctype: 'multipart/form-data',
             success:function(){
-                  alert('Saved');
-                    }
-            })
-        });
-    </script> -->
+				alert('Saved');
+			}
+		})
+	});
+</script>
 
 </body>
 </html>
