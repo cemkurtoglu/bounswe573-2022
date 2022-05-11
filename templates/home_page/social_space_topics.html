@@ -1,0 +1,269 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>coLearn</title>
+
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Main Font -->
+	<script src="{%static 'user_profile_page_settings/js/webfontloader.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Roboto:300,400,500,700:latin']
+			}
+		});
+	</script>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-reboot.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-grid.css' %}">
+	
+		<!-- Main Styles CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/main.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/fonts.min.css' %}">
+	
+
+</head>
+<body>
+
+	
+{%  include 'user_profile_page_settings/navbar.html' %}
+
+
+
+
+<!-- ... end Responsive Header-BP -->
+<div class="header-spacer header-spacer-small"></div>
+
+
+
+{%  include 'home_page/social_space_main_header.html' %}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<div class="ui-block responsive-flex">
+				<div class="ui-block-title">
+					<div class="h6 title">
+                        <img src="{% static 'user_profile_page_settings/img/tag.png' %}" alt="forum" width="34" height="34">
+                        General</div>
+					<form class="w-search">
+						<div class="form-group with-button">
+							<input class="form-control" type="text" placeholder="Search the forums...">
+							<button>
+								<svg class="olymp-magnifying-glass-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+
+    <!-- News Feed block  -->
+
+    <div class="ui-block">
+				
+        <!-- News Feed Form  -->
+        
+        <div class="news-feed-form">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
+        
+                        <svg class="olymp-status-icon"><use xlink:href="#olymp-status-icon"></use></svg>
+        
+                        <span>Co Learning Post</span>
+                    </a>
+                </li>
+            </ul>
+        
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
+                    <form id = "question-form" method="POST" enctype="multipart/form-data" onsubmit="window.location.reload()">
+						{% csrf_token %}
+                        <div class="author-thumb">
+                            <img src="{{user.profileImage.url}}" width="40" height="40" alignment="center" alt="author">
+                        </div>
+                        <div class="form-group with-icon label-floating is-empty">
+                            <label class="control-label">Share your question with the community!!</label>
+                            <textarea id="id_content" name="content" class="form-control" placeholder=""></textarea>
+                        <span class="material-input"></span></div>
+                        <div class="add-options-message">
+
+							<input id = "id_type" type="hidden" name="type" value="Question" />
+							<input id = "id_author" type="hidden" name="author" value="{{user.id}}" />
+
+                        	<button type="submit" class="btn btn-primary btn-md-2">Post Question</button>
+                        	<button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+        
+                        </div>
+        
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        
+        <!-- ... end News Feed Form  -->	
+            </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+			<div class="ui-block responsive-flex">
+
+				
+				<!-- Open Topic Table -->
+				
+				<table class="open-topic-table">
+				
+					<thead>
+				
+					<tr>
+						<th class="author">
+							Author
+						</th>
+				
+						<th class="posts">
+							Post
+						</th>
+					</tr>
+				
+					</thead>
+				
+					<tbody>
+				
+					<tr>
+						<td class="topic-date" colspan="2">
+							March 24th, 2016 at 6:42 pm
+							<a href="#" class="reply-topic">Reply</a>
+						</td>
+					</tr>
+				
+					<tr>
+						<td class="author">
+							<div class="author-thumb">
+								<img src="img/avatar2.jpg" alt="author">
+							</div>
+							<div class="author-content">
+								<a href="02-ProfilePage.html" class="h6 author-name">Marina Valentine</a>
+								<div class="country">Long Island, NY</div>
+							</div>
+						</td>
+						<td class="posts">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							</p>
+							<p>Duis aute irure dolor in reprehenderit.</p>
+							<p>Thanks!</p>
+						</td>
+					</tr>
+				
+				
+
+				
+					</tbody>
+				</table>
+				
+				<!-- ... end Open Topic Table -->
+			</div>
+
+			
+			<!-- Pagination -->
+			
+			<nav aria-label="Page navigation">
+				<ul class="pagination justify-content-center">
+					<li class="page-item disabled">
+						<a class="page-link" href="#" tabindex="-1">Previous</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1<div class="ripple-container"><div class="ripple ripple-on ripple-out" style="left: -10.3833px; top: -16.8333px; background-color: rgb(255, 255, 255); transform: scale(16.7857);"></div></div></a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">...</a></li>
+					<li class="page-item"><a class="page-link" href="#">12</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#">Next</a>
+					</li>
+				</ul>
+			</nav>
+			
+			<!-- ... end Pagination -->
+
+		</div>
+
+	</div>
+</div>
+
+
+
+
+<a class="back-to-top" href="#">
+	<img src="{% static 'user_profile_page_settings/svg-icons/back-to-top.svg' %}" alt="arrow" class="back-icon">
+</a>
+
+
+
+
+
+
+
+<!-- JS Scripts -->
+<script src="{% static 'user_profile_page_settings/js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.appear.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.matchHeight.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/svgxuse.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Headroom.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/velocity.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ScrollMagic.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.countTo.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/popper.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/material.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/smooth-scroll.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/selectize.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/swiper.jquery.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/moment.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/daterangepicker.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/simplecalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/fullcalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/isotope.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ajax-pagination.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/chartjs-plugin-deferred.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/circle-progress.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/loader.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/run-chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.gifplayer.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-and-player.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-playlist-plugin.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/js/base-init.js' %}"></script>
+<script defer src="{% static 'user_profile_page_settings/fonts/fontawesome-all.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/Bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+
+</body>
+</html>

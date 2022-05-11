@@ -68,3 +68,7 @@ def social_space(request):
     context = {'user':user}
     return render(request,'home_page/social_space_main.html',context)
 
+def social_space_topics(request):
+    user = User.objects.get(id=1)
+    context = {'user':user}
+    return render(request,'home_page/social_space_topics.html',context)
