@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home_page.views import home
+from home_page.views import social_space
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home_page.urls')),
     path('profile_settings/',include('user_profile_page_settings.urls')), # profile_settings/<str:pk>/
-    path('profile/', include('user_profile_page_main.urls'))
+    path('profile/', include('user_profile_page_main.urls')),
+    path('social_space/',social_space)
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

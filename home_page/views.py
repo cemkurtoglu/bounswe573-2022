@@ -62,5 +62,9 @@ def post_blog(request):
             return HttpResponse("Success")
         else:
             print(postBlog.errors.as_json)
-        
+
+def social_space(request):
+    user = User.objects.get(id=1)
+    context = {'user':user}
+    return render(request,'home_page/social_space_main.html',context)
 
