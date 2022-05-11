@@ -771,10 +771,10 @@
 								
 								<div class="friend-item friend-groups create-group" data-mh="friend-groups-item">
 								
-									<a href="#" class="full-block" data-toggle="modal" data-target="#create-friend-group-1"></a>
+									<a href="#" class="full-block" data-toggle="modal" data-target="#search-friend-group-1"></a>
 									<div class="content">
 								
-										<a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-1">
+										<a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#search-friend-group-1">
 											<svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
 										</a>
 								
@@ -839,10 +839,10 @@
 											</div>
 											<div class="friend-avatar">
 												<div class="author-thumb">
-													<img src="img/logo.png" alt="Olympus">
+													<img src="{{learningspace_image}}" alt="Olympus">
 												</div>
 												<div class="author-content">
-													<a href="#" class="h5 author-name">My Family</a>
+													<a href="{% url 'social_space' %}" class="h5 author-name">Learning Space That User Registered</a>
 													<div class="country">6 Friends in the Group</div>
 												</div>
 											</div>
@@ -889,7 +889,7 @@
 
 <!-- Window-popup Create Friends Group -->
 
-{%  include 'home_page/social_space_create.html' %}
+{%  include 'home_page/social_space_pop_up.html' %}
 
 
 <!-- ... end Window-popup Create Friends Group -->
