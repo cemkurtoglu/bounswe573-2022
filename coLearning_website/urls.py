@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home_page.views import social_space, social_space_topics
+from home_page.views import social_space, social_space_topics, blog_post
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -28,5 +28,6 @@ urlpatterns = [
     path('profile/', include('user_profile_page_main.urls')),
     path('social_space/',social_space),
     path('social_space/topics/',social_space_topics, name="social_space/topics/"),
+    path('blog_post/',blog_post)
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

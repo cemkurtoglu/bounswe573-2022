@@ -72,3 +72,10 @@ def social_space_topics(request):
     user = User.objects.get(id=1)
     context = {'user':user}
     return render(request,'home_page/social_space_topics.html',context)
+
+def blog_post(request):
+    user = User.objects.get(id=1)
+    context = {'user':user}
+    return render(request,'home_page/blog_post.html',context)
+
+
