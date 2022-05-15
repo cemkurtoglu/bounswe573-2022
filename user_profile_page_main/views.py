@@ -1,4 +1,5 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from home_page.models import PostLikes, Post, PostDislikes
 from user_profile_page_settings.models import User
@@ -14,6 +15,31 @@ def profile_page(request):
 
     context = {'user':user, 'posts':posts }
     return render(request,'user_profile_page_main/profile_page_main.html',context)
+
+
+def user(request):
+    # set profileUserId as parameter for actual user login case
+    # for now lets assume public profile user have id 2
+    user = User.objects.get(id=1)
+    profileUser = User.objects.get(id=2)
+    posts = user.post_set.all()
+
+    context = {'user':user, 'posts':posts, 'profileUser': profileUser}
+    return render(request,'user_profile_page_main/profile_page_user.html',context)
+
+
+def followToggle(request, profileUserId):
+    prifileUser = User.objects.get(id=profileUserId)
+    currentUserObj = User.objects.get(id=1)
+    following = prifileUser.following.all()
+
+    if profileUserId != currentUserObj.id:
+        if currentUserObj in following:
+            prifileUser.following.remove(currentUserObj.id)
+        else:
+            prifileUser.following.add(currentUserObj.id)
+
+    return HttpResponseRedirect("/profile/user/")
 
 
 def post_reaction(request):
@@ -158,3 +184,4 @@ class LikesAndDislikes:
     @register.filter
     def get_item(dictionary, key):
         return dictionary.get(key)
+

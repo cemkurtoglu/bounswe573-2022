@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'user_profile_page_settings',
     'user_profile_page_main'
 ]
+AUTH_USER_MODEL = 'user_profile_page_settings.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

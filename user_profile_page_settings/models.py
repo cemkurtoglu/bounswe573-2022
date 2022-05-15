@@ -1,8 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
 
-class User(models.Model):
+class User(AbstractUser):
 
     genderChoice = [ 
         ('Male',"Male"),
@@ -72,11 +72,10 @@ class User(models.Model):
         ("Wyoming","WY")
         
     ]
-
-    id = models.BigAutoField(primary_key=True)
-    firstName = models.CharField(max_length=100)
-    lastName = models.CharField(max_length=100)
-    birthDate = models.DateField(blank=True)
+    following = models.ManyToManyField(
+        "self", blank=True, related_name="followers", symmetrical=False
+    )
+    birthDate = models.DateField(null = True, blank=True)
     email = models.EmailField(max_length=254)
     website = models.URLField(max_length = 200, blank=True)
     phoneNumber = models.CharField(max_length=12, blank=True)
@@ -90,9 +89,7 @@ class User(models.Model):
     maritialStatus = models.CharField(max_length=9, choices=maritialStatusChoice, default="Single")
     profileImage = models.ImageField(null = True,blank = True,upload_to='static/user_profile_page_settings/profileImages/')
     backgroundImage = models.ImageField(null = True,blank = True,upload_to='static/user_profile_page_settings/profileImages/')
-
     facebookAccount = models.URLField(blank=True)
 
-
     def __str__(self) -> str:
-        return str(self.id) + '_' + self.firstName + '_' + self.lastName
+        return str(self.id) + '_' + self.first_name + '_' + self.last_name
