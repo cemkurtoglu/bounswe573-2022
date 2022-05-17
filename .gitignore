@@ -6,13 +6,12 @@ static/user_profile_page_settings/img/
 media/static/.DS_Store
 media/static/home_page/post_content/
 static/.DS_Store
-templates/.DS_Store
-user_profile_page_settings/.DS_Store
-home_page/.DS_Store
-static/.DS_Store
+# templates/.DS_Store
+# user_profile_page_settings/.DS_Store
+# home_page/.DS_Store
+# static/.DS_Store
 static/user_profile_page_settings/.DS_Store
-user_profile_page_main/.DS_Store
+# user_profile_page_main/.DS_Store
 migrations
-__pycache__
-venv
+/__pycache__
 templates/home_page/test.html
