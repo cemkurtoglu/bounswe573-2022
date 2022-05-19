@@ -2,8 +2,8 @@
 virtualenv/
 static/user_profile_page_settings/profileImages/
 static/user_profile_page_settings/img/
-media/static/home_page/post_content/
+media/static/
 migrations
-/__pycache__
+*/__pycache__
 templates/home_page/test.html
 .DS_Store
