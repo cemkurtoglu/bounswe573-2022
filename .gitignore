@@ -7,3 +7,4 @@ migrations
 */__pycache__
 templates/home_page/test.html
 .DS_Store
+media/social_space/
