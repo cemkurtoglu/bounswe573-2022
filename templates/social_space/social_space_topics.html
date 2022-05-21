@@ -45,7 +45,7 @@
 
 
 
-{%  include 'home_page/social_space_main_header.html' %}
+{%  include 'social_space/social_space_main_header.html' %}
 
 
 <div class="container">
@@ -94,7 +94,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-                    <form id = "question-form" method="POST" enctype="multipart/form-data" onsubmit="window.location.reload()">
+                    <form id = "question-form" method="POST" enctype="multipart/form-data">
 						{% csrf_token %}
                         <div class="author-thumb">
                             <img src="{{user.profileImage.url}}" width="40" height="40" alignment="center" alt="author">
@@ -103,10 +103,12 @@
                             <label class="control-label">Share your question with the community!!</label>
                             <textarea id="id_content" name="content" class="form-control" placeholder=""></textarea>
                         <span class="material-input"></span></div>
+                        <div class="errorfield">{{ post_form.errors.content }}</div>
                         <div class="add-options-message">
 
-							<input id = "id_type" type="hidden" name="type" value="Question" />
+							<input id = "id_type" type="hidden" name="post_type" value="general" />
 							<input id = "id_author" type="hidden" name="author" value="{{user.id}}" />
+							<input id = "social_space" type="hidden" name="social_space" value="{{social_space.id}}" />
 
                         	<button type="submit" class="btn btn-primary btn-md-2">Post Question</button>
                         	<button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
@@ -157,28 +159,22 @@
 							<a href="#" class="reply-topic">Reply</a>
 						</td>
 					</tr>
-				
-					<tr>
-						<td class="author">
-							<div class="author-thumb">
-								<img src="img/avatar2.jpg" alt="author">
-							</div>
-							<div class="author-content">
-								<a href="02-ProfilePage.html" class="h6 author-name">Marina Valentine</a>
-								<div class="country">Long Island, NY</div>
-							</div>
-						</td>
-						<td class="posts">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-							</p>
-							<p>Duis aute irure dolor in reprehenderit.</p>
-							<p>Thanks!</p>
-						</td>
-					</tr>
-				
-				
-
-				
+				    {% for post in social_space.socialpost_set.all %}
+                        <tr>
+                            <td class="author">
+                                <div class="author-thumb">
+                                    <img src="img/avatar2.jpg" alt="author">
+                                </div>
+                                <div class="author-content">
+                                    <a href="02-ProfilePage.html" class="h6 author-name">{{ post.author.first_name }}</a>
+                                    <div class="country">{{ post.author.country }}</div>
+                                </div>
+                            </td>
+                            <td class="posts">
+                                <p>{{ post.content }}</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
 					</tbody>
 				</table>
 				
