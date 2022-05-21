@@ -842,7 +842,7 @@
 													<img src="{{learningspace_image}}" alt="Olympus">
 												</div>
 												<div class="author-content">
-													<a href="{% url 'social_space' %}" class="h5 author-name">Learning Space That User Registered</a>
+													<a href="{% url 'social_space:social_space' space_id=2 %}" class="h5 author-name">Learning Space That User Registered</a>
 													<div class="country">6 Friends in the Group</div>
 												</div>
 											</div>
@@ -917,7 +917,6 @@
 											<img src="img/avatar52-sm.jpg" alt="author">
 										</div>
 											<div class="h6 author-title">Green Goo Rock</div>
-
 										</div>'>Green Goo Rock
 					</option>
 
@@ -1308,6 +1307,56 @@
 			enctype: 'multipart/form-data',
             success:function(){
 				alert('Saved');
+			}
+		})
+	});
+</script>
+<script>
+    $(document).on('submit','#create-social-space',function(e){
+        e.preventDefault();
+
+        var formdata = new FormData();
+		formdata.append("icon", $('#space-icon').prop('files')[0]);
+		formdata.append("name", $('#space-name').val());
+		formdata.append("users", $('select[name=users]').val());
+		formdata.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val())
+        $.ajax({
+            type:'POST',
+            url:"{% url 'social_space:create_social_space' %}",
+            data: formdata,
+    		cache: false,
+        	contentType: false,
+        	processData: false,
+			enctype: 'multipart/form-data',
+            success:function(resp){
+                if (resp['status'] === "success"){
+                    let spaceId = resp['space_id']
+                    window.location.href = "{% url 'social_space:social_space' space_id='123' %}".replace('123', spaceId)
+                }
+			}
+		})
+	});
+</script>
+<script>
+    $(document).on('submit','#join-social-space',function(e){
+        e.preventDefault();
+
+        var formdata = new FormData();
+		formdata.append("social_spaces", $('select[name=social_spaces]').val());
+		formdata.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val())
+        $.ajax({
+            type:'POST',
+            url:"{% url 'social_space:join_social_space' %}",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success:function(resp){
+                if (resp['status'] === "success"){
+                    $('#join-social-space').each(function(){
+                        this.reset();
+                    });
+                    $('#search-friend-group-1').modal('toggle');
+                }
 			}
 		})
 	});

@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from social_space.models import *
+admin.site.register(SocialSpace)
+admin.site.register(SocialPost)

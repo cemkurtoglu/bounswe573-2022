@@ -66,30 +66,3 @@ class Comments(models.Model):
     replyTo = models.ForeignKey('self',null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self) -> str:
         return str(self.id) + "_post_of_" + str(self.postId) + "_commented_by_" + str(self.author) 
-
-
-class SocialSpaces(models.Model):
-
-    title = models.CharField(max_length=100, null = True,blank = True)
-    author = models.ManyToManyField(User, blank=True, related_name="authors", symmetrical = False)
-    members = models.ManyToManyField(
-        User, blank=True, related_name="space_members", symmetrical=False)
-
-    def __str__(self) -> str:
-        return self.title
-
-class SocialSpace_Topics_Content(models.Model):
-
-    forums = [
-        ('General','General'),
-        ('Community','Community'),
-        ('Collaborative Learning','Collaborative Learning')
-    ]
-    forum = models.CharField(default="General",max_length=100,choices=forums)
-    social_space = models.ForeignKey(to=SocialSpaces, on_delete=models.CASCADE)
-    members = models.ManyToManyField(
-        User, blank=True, related_name="space_member_content", symmetrical=False)
-    content = models.CharField(max_length=280,null = True,blank = True)
-    def __str__(self) -> str:
-        return str(self.id) 
-

@@ -1,24 +1,30 @@
 from django.http import HttpResponse 
 from django.shortcuts import render
 from .models import User
+from social_space.models import SocialSpace
 from home_page.forms import PostForm, BlogPostForm
 from home_page.models import Tags
 from django.views.decorators.csrf import csrf_exempt
 import os
+
 
 def home(request):
     user = User.objects.get(id=1)
     tags = Tags.objects.all()
     postForm = PostForm(request.POST or None,instance=user)
     postBlog = BlogPostForm(request.POST or None,instance=user)
+    social_spaces = SocialSpace.objects.all()
 
     # videoPost = QuestionPost(request.POST or None,instance=user)
-    context = {'user':user,'postForm':postForm, 'tags':tags, 'postBlog':postBlog}
+    context = {
+        'user': user,
+        'postForm': postForm,
+        'tags': tags,
+        'postBlog': postBlog,
+        'social_spaces': social_spaces
+    }
+    return render(request, 'home_page/home.html', context)
 
-    
-
-
-    return render(request,'home_page/home.html',context)
 
 def post_question(request):
     
@@ -63,19 +69,8 @@ def post_blog(request):
         else:
             print(postBlog.errors.as_json)
 
-def social_space(request):
-    user = User.objects.get(id=1)
-    context = {'user':user}
-    return render(request,'home_page/social_space_main.html',context)
-
-def social_space_topics(request):
-    user = User.objects.get(id=1)
-    context = {'user':user}
-    return render(request,'home_page/social_space_topics.html',context)
 
 def blog_post(request):
     user = User.objects.get(id=1)
     context = {'user':user}
     return render(request,'home_page/blog_post.html',context)
-
-
