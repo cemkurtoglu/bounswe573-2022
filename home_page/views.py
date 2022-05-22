@@ -1,6 +1,6 @@
 from django.http import HttpResponse 
 from django.shortcuts import render
-from .models import User
+from .models import User, Post
 from social_space.models import SocialSpace
 from home_page.forms import PostForm, BlogPostForm
 from home_page.models import Tags
@@ -14,6 +14,8 @@ def home(request):
     postForm = PostForm(request.POST or None,instance=user)
     postBlog = BlogPostForm(request.POST or None,instance=user)
     social_spaces = SocialSpace.objects.all()
+    user_spaces = SocialSpace.objects.filter(users__id=user.id)
+    post_list = Post.objects.all()
 
     # videoPost = QuestionPost(request.POST or None,instance=user)
     context = {
@@ -21,7 +23,9 @@ def home(request):
         'postForm': postForm,
         'tags': tags,
         'postBlog': postBlog,
-        'social_spaces': social_spaces
+        'social_spaces': social_spaces,
+        'post_list': post_list,
+        'user_spaces': user_spaces
     }
     return render(request, 'home_page/home.html', context)
 
@@ -74,3 +78,7 @@ def blog_post(request):
     user = User.objects.get(id=1)
     context = {'user':user}
     return render(request,'home_page/blog_post.html',context)
+
+#delete later on
+def test_authentication_page(request):
+    return render(request,'authentication/authentication.html')

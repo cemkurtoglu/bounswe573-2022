@@ -107,7 +107,7 @@
 					<tr>
 						<td class="forum">
 							<div class="forum-item">
-								<img src="{% static 'user_profile_page_settings/img/tag.png' %}" alt="forum" width="34" height="34">
+								<img src="{% static 'user_profile_page_settings/img/tag.png' %}" alt="forum" width="34" height="34" alt="Olympus">
 								<div class="content">
 									<a href="{% url 'social_space:social_space_topics' space_id=social_space.id %}" class="h6 title">General</a>
 									<p class="text">Have a general question about the community and this learning space write it here!</p>
@@ -127,7 +127,7 @@
 							<div class="forum-item">
 								<img src="{% static 'user_profile_page_settings/img/tag.png' %}" alt="forum" width="34" height="34">
 								<div class="content">
-									<a href="#" class="h6 title">Community</a>
+									<a href="{% url 'social_space:social_space_topics' space_id=social_space.id %}" class="h6 title">Community</a>
 									<p class="text">Engage with our community members and become learning buddies!</p>
 								</div>
 							</div>
@@ -145,7 +145,7 @@
 							<div class="forum-item">
 								<img src="{% static 'user_profile_page_settings/img/tag.png' %}" alt="forum" width="34" height="34">
 								<div class="content">
-									<a href="#" class="h6 title">Collaborative Learning</a>
+									<a href="{% url 'social_space:social_space_topics' space_id=social_space.id %}" class="h6 title">Collaborative Learning</a>
 									<p class="text">Ask your questions, share your learning videos and your blogs</p>
 								</div>
 							</div>
