@@ -1,0 +1,280 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>coLearn</title>
+
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Main Font -->
+	<script src="{%static 'user_profile_page_settings/js/webfontloader.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Roboto:300,400,500,700:latin']
+			}
+		});
+	</script>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-reboot.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/Bootstrap/dist/css/bootstrap-grid.css' %}">
+	
+		<!-- Main Styles CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/main.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'user_profile_page_settings/css/fonts.min.css' %}">
+	
+
+</head>
+<body>
+
+<body class="landing-page">
+
+<div class="content-bg-wrap"></div>
+
+
+<!-- Header Standard Landing  -->
+
+<div class="header--standard header--standard-landing" id="header--standard">
+	<div class="container">
+		<div class="header--standard-wrap">
+
+			<a href="#" class="logo">
+				<div class="img-wrap">
+					<img src="{% static 'user_profile_page_settings/img/logo.png' %}" alt="Olympus">
+					<img src="{% static 'user_profile_page_settings/img/logo-colored-small.png' %}" alt="Olympus" class="logo-colored">
+				</div>
+				<div class="title-block">
+					<h6 class="logo-title">Boun Learn</h6>
+					<div class="sub-title">SOCIAL LEARNING</div>
+				</div>
+			</a>
+
+		</div>
+	</div>
+</div>
+
+<!-- ... end Header Standard Landing  -->
+<div class="header-spacer--standard"></div>
+
+<div class="container">
+	<div class="row display-flex">
+		<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+			<div class="landing-content">
+				<h1>Welcome to the Biggest Social Learning Environment in the World</h1>
+				<p>We are the best and biggest social learning platform with thousands of active users all around the world. Share your
+					questions, write blog posts, post your own tutorials, earn badges and much more!
+				</p>
+				<a href="#" class="btn btn-md btn-border c-white">Register Now!</a>
+			</div>
+		</div>
+
+		<div class="col col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+			
+			<!-- Login-Registration Form  -->
+			
+			<div class="registration-login-form">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+							<svg class="olymp-login-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-login-icon"></use></svg>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#profile" role="tab">
+							<svg class="olymp-register-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-register-icon"></use></svg>
+						</a>
+					</li>
+				</ul>
+			
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="home" role="tabpanel" data-mh="log-tab">
+						<div class="title h6">Register to Olympus</div>
+						<form class="content">
+							<div class="row">
+								<div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+									<div class="form-group label-floating is-empty">
+										<label class="control-label">First Name</label>
+										<input class="form-control" placeholder="" type="text">
+									</div>
+								</div>
+								<div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+									<div class="form-group label-floating is-empty">
+										<label class="control-label">Last Name</label>
+										<input class="form-control" placeholder="" type="text">
+									</div>
+								</div>
+								<div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									<div class="form-group label-floating is-empty">
+										<label class="control-label">Your Email</label>
+										<input class="form-control" placeholder="" type="email">
+									</div>
+									<div class="form-group label-floating is-empty">
+										<label class="control-label">Your Password</label>
+										<input class="form-control" placeholder="" type="password">
+									</div>
+			
+									<div class="form-group date-time-picker label-floating">
+										<label class="control-label">Your Birthday</label>
+										<input name="datetimepicker" value="10/24/1984" />
+										<span class="input-group-addon">
+														<svg class="olymp-calendar-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+													</span>
+									</div>
+			
+									<div class="form-group label-floating is-select">
+										<label class="control-label">Your Gender</label>
+										<select class="selectpicker form-control">
+											<option value="MA">Male</option>
+											<option value="FE">Female</option>
+										</select>
+									</div>
+			
+									<div class="remember">
+										<div class="checkbox">
+											<label>
+												<input name="optionsCheckboxes" type="checkbox">
+												I accept the <a href="#">Terms and Conditions</a> of the website
+											</label>
+										</div>
+									</div>
+			
+									<a href="#" class="btn btn-purple btn-lg full-width">Complete Registration!</a>
+								</div>
+							</div>
+						</form>
+					</div>
+			
+					<div class="tab-pane" id="profile" role="tabpanel" data-mh="log-tab">
+						<div class="title h6">Login to your Account</div>
+						<form class="content">
+							<div class="row">
+								<div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									<div class="form-group label-floating is-empty">
+										<label class="control-label">Your Email</label>
+										<input class="form-control" placeholder="" type="email">
+									</div>
+									<div class="form-group label-floating is-empty">
+										<label class="control-label">Your Password</label>
+										<input class="form-control" placeholder="" type="password">
+									</div>
+			
+                                    <div class="remember">
+
+										<div class="checkbox">
+											<label>
+												<input name="optionsCheckboxes" type="checkbox">
+												Remember Me
+											</label>
+										</div>
+                                        <a href="#" class="forgot" data-toggle="modal" data-target="#forgot-password">Forgot my Password</a>
+									</div>
+			
+									<a href="#" class="btn btn-lg btn-primary full-width">Login</a>
+			
+
+			
+			
+									<p>Don’t you have an account? <a href="#">Register Now!</a> it’s really simple and you can start enjoing all the benefits!</p>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<!-- ... end Login-Registration Form  -->		</div>
+	</div>
+</div>
+<div class="modal fade" id="forgot-password" tabindex="-1" role="dialog" aria-labelledby="forgot-password" aria-hidden="true">
+	<div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">
+		<div class="modal-content">
+			<a href="#" class="close icon-close" data-bs-dismiss="modal" aria-label="Close">
+				<svg class="olymp-close-icon"><use xlink:href="#olymp-close-icon"></use></svg>
+			</a>
+
+			<div class="modal-header">
+				<h6 class="title">Restore your Password</h6>
+			</div>
+
+			<div class="modal-body">
+				<form method="get">
+					<p>Enter your email and click the send code button. You’ll receive a code in your email. Please use that
+						code below to change the old password for a new one.
+					</p>
+					<div class="form-group label-floating">
+						<label class="control-label">Your Email</label>
+						<input class="form-control" placeholder="" type="email">
+					<span class="material-input"></span></div>
+					<button class="btn btn-purple btn-lg full-width">Send me the Code</button>
+					<div class="form-group label-floating is-empty">
+						<label class="control-label">Enter the Code</label>
+						<input class="form-control" placeholder="" type="text" value="">
+					<span class="material-input"></span></div>
+					<div class="form-group label-floating">
+						<label class="control-label">Your New Password</label>
+						<input class="form-control" placeholder="" type="password">
+					<span class="material-input"></span></div>
+					<button class="btn btn-primary btn-lg full-width">Change your Password!</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<!-- JS Scripts -->
+<script src="{% static 'user_profile_page_settings/js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.appear.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.matchHeight.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/svgxuse.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Headroom.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/velocity.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ScrollMagic.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.countTo.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/popper.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/material.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/smooth-scroll.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/selectize.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/swiper.jquery.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/moment.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/daterangepicker.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/simplecalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/fullcalendar.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/isotope.pkgd.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/ajax-pagination.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/Chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/chartjs-plugin-deferred.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/circle-progress.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/loader.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/run-chart.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/jquery.gifplayer.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-and-player.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/mediaelement-playlist-plugin.min.js' %}"></script>
+<script src="{% static 'user_profile_page_settings/js/sticky-sidebar.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/js/base-init.js' %}"></script>
+<script defer src="{% static 'user_profile_page_settings/fonts/fontawesome-all.js' %}"></script>
+
+<script src="{% static 'user_profile_page_settings/Bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+
+</body>
+</html>
