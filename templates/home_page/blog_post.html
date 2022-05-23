@@ -53,61 +53,33 @@
 				
 				<article class="hentry blog-post single-post single-post-v2">
 				
-					<a href="#" class="post-category bg-blue-light">Tag name</a>
-					<h2 class="h1 post-title">Blog Title</h2>
+					<a href="#" class="post-category bg-blue-light">{{blog.tag}}</a>
+					<h2 class="h1 post-title">{{blog.title}}</h2>
 				
 					<div class="single-post-additional inline-items">
 						<div class="post__author author vcard inline-items">
-							<img alt="author" src="img/avatar84-sm.jpg" class="avatar">
+							<img alt="author" src="{{blog.author.profileImage.url}}" class="avatar">
 							<div class="author-date not-uppercase">
-								<a class="h6 post__author-name fn" href="#">Jack Scorpio</a>
+								<a class="h6 post__author-name fn" href="#">{{blog.author.first_name}} {{blog.author.last_name}}</a>
 								<div class="author_prof">
-									Author
+									{{blog.author.occupation}}
 								</div>
 							</div>
 						</div>
 					</div>
 				
 					<div class="post-thumb">
-						<img src="img/post-header1.jpg" alt="blog_image">
+						<img src="{{blog.blogImage.url}}" alt="blog_image">
 					</div>
 				
 				
 					<div class="post-content-wrap">
 				
 						<div class="post-content">
-							<h5 class="weight-normal">Lorem ipsum dolor sit amet, consectadipisicing elit, sed do eiusmod por incidid ut labore et dolore
-								magna aliqua. Ut enim ad minim veniam, quis nostrud lorem exercitation ullamco laboris.
-							</h5>
+							<h3 class="weight-normal">
+								{{blog.blogContent}}
+							</h3>
 				
-							<p>Duis en aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-								nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-								deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-								voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-								inventore veritatis et quasi hitecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-								voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
-								dolores eos qui ratione voluptatem sequi nesciunt Sed ut perspiciatis unde omnis iste natus
-								error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-								ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-								ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
-								dolores eos qui ratione voluptatem sequi nesciunt.
-							</p>
-				
-							<h3>Best Tattoos Slideshow</h3>
-				
-							<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-								sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-								voluptatem accusantium doloremque.
-							</p>
-				
-
-				
-							<p>Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud tation ullamco laboris
-								nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-								velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-								sunt in culpa qui officia unt mollit anim id est laborum aperiam, eaque ipsa quae ab illo
-								inventore veritatis quasi architecto.
-							</p>
 						</div>
 					</div>
 				

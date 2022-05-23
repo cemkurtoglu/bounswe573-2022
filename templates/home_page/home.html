@@ -240,13 +240,13 @@
                                     <article class="hentry post has-post-thumbnail thumb-full-width">
 
                                         <div class="post__author author vcard inline-items">
-                                            <img src="img/author-page.jpg" alt="author">
+                                            <img src="{{ post.author.profileImage.url }}" alt="author">
 
                                             <div class="author-date">
                                                 <a class="h6 post__author-name fn" href="#">
-                                                    {{ post.author.first_name }}
+                                                    {{ post.author.first_name }} {{ post.author.last_name }}
                                                 </a>
-                                                wrote a <a href="#">blog post</a>
+                                                wrote a <a href="{% url 'home_page:blog_post' blog_id=post.id %}">blog post</a>
                                                 <div class="post__date">
                                                     <time class="published" datetime="2017-03-24T18:18">
                                                         7 hours ago
@@ -277,78 +277,69 @@
                                         </div>
 
                                         <div class="post-thumb">
-                                            <img src="img/post__thumb4.jpg" alt="photo">
+                                            <img src="{{ post.blogImage.url }}" alt="photo">
                                         </div>
 
                                         <a href="#" class="h2 post-title">{{ post.title }}</a>
 
                                         <p>{{ post.blogContent }}</p>
 
-                                        <a href="#"
-                                           class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Read
-                                            More</a>
-
                                         <div class="post-additional-info inline-items">
 
-                                            <a href="#" class="post-add-icon inline-items">
-                                                <svg class="olymp-heart-icon">
-                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                                </svg>
-                                                <span>15</span>
-                                            </a>
 
-                                            <ul class="friends-harmonic">
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic5.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic10.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic7.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic8.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic2.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <form id="post-form-like" method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <input id="postId" type="hidden" name="postId" value="{{ post.id }}"/>
+                                                <input id="opinion" type="hidden" name="opinion" value="like"/>
 
-                                            <div class="names-people-likes">
-                                                <a href="#">Diana</a>, <a href="#">Nicholas</a> and
-                                                <br>47 more liked this
-                                            </div>
+                                                <button type="submit" style="border: none;"
+                                                        class="post-add-icon inline-items">
+                                                    <svg class="olymp-heart-icon">
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
+                                                    </svg>
+
+                                                    <span id="like_count">{{ post.get_total_likes | default:"0" }}</span>
+
+
+                                                </button>
+                                            </form>
+
+                                            <form id="post-form-dislike" method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <input id="postId" type="hidden" name="postId" value="{{ post.id }}"/>
+                                                <input id="opinion" type="hidden" name="opinion" value="dis_like"/>
+
+                                                <button id="like-button" type="submit" style="border: none;"
+                                                        class="post-add-icon inline-items">
+                                                    <svg class="olymp-heart-icon" transform="scale(1 -1)" height="100%"
+                                                         preserveaspectratio="none" version="1.1" viewbox="0 0 100 100"
+                                                         width="100%" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
+                                                    </svg>
+                                                    <span id="dislike_count">{{ post.get_total_dis_likes | default:"0" }}</span>
+                                                </button>
+                                            </form>
 
 
                                             <div class="comments-shared">
                                                 <a href="#" class="post-add-icon inline-items">
                                                     <svg class="olymp-speech-balloon-icon">
-                                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-speech-balloon-icon"></use>
                                                     </svg>
-                                                    <span>16</span>
+                                                    <span>17</span>
                                                 </a>
 
                                                 <a href="#" class="post-add-icon inline-items">
                                                     <svg class="olymp-share-icon">
-                                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %}#olymp-share-icon"></use>
                                                     </svg>
-                                                    <span>0</span>
+                                                    <span>24</span>
                                                 </a>
                                             </div>
 
 
                                         </div>
+
 
                                         <div class="control-block-button post-control-button">
 
@@ -380,51 +371,20 @@
                                     <article class="hentry post video">
 
                                         <div class="post__author author vcard inline-items">
-                                            <img src="img/avatar7-sm.jpg" alt="author">
+                                            <img src="{{ post.author.profileImage.url }}" alt="author">
 
                                             <div class="author-date">
-                                                <a class="h6 post__author-name fn" href="#">{{ post.author.first_name }}</a> shared
-                                                a <a href="#">link</a>
-                                                <div class="post__date">
-                                                    <time class="published" datetime="2004-07-24T18:18">
-                                                        March 4 at 2:05pm
-                                                    </time>
-                                                </div>
+                                                <a class="h6 post__author-name fn" href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a> shared
+                                                a video
+
                                             </div>
 
-                                            <div class="more">
-                                                <svg class="olymp-three-dots-icon">
-                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                                </svg>
-                                                <ul class="more-dropdown">
-                                                    <li>
-                                                        <a href="#">Edit Post</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Delete Post</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Turn Off Notifications</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Select as Featured</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
 
                                         </div>
 
                                         <p>{{ post.content }}</p>
 
                                         <div class="post-video">
-                                            <div class="video-thumb">
-                                                <img src="img/video-youtube1.jpg" alt="photo">
-                                                <a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video">
-                                                    <svg class="olymp-play-icon">
-                                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-play-icon"></use>
-                                                    </svg>
-                                                </a>
-                                            </div>
 
                                             <div class="video-content">
                                                 <video controls>
@@ -433,90 +393,63 @@
                                             </div>
                                         </div>
 
-                                        <div class="post-additional-info inline-items">
+										<div class="post-additional-info inline-items">
 
-                                            <a href="#" class="post-add-icon inline-items">
-                                                <svg class="olymp-heart-icon">
-                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                                </svg>
-                                                <span>18</span>
-                                            </a>
 
-                                            <ul class="friends-harmonic">
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic9.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic10.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic7.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic8.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic11.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <form id="post-form-like" method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <input id="postId" type="hidden" name="postId" value="{{ post.id }}"/>
+                                                <input id="opinion" type="hidden" name="opinion" value="like"/>
 
-                                            <div class="names-people-likes">
-                                                <a href="#">Jenny</a>, <a href="#">Robert</a> and
-                                                <br>18 more liked this
-                                            </div>
+                                                <button type="submit" style="border: none;"
+                                                        class="post-add-icon inline-items">
+                                                    <svg class="olymp-heart-icon">
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
+                                                    </svg>
+
+                                                    <span id="like_count">{{ post.get_total_likes | default:"0" }}</span>
+
+
+                                                </button>
+                                            </form>
+
+                                            <form id="post-form-dislike" method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <input id="postId" type="hidden" name="postId" value="{{ post.id }}"/>
+                                                <input id="opinion" type="hidden" name="opinion" value="dis_like"/>
+
+                                                <button id="like-button" type="submit" style="border: none;"
+                                                        class="post-add-icon inline-items">
+                                                    <svg class="olymp-heart-icon" transform="scale(1 -1)" height="100%"
+                                                         preserveaspectratio="none" version="1.1" viewbox="0 0 100 100"
+                                                         width="100%" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-heart-icon"></use>
+                                                    </svg>
+                                                    <span id="dislike_count">{{ post.get_total_dis_likes | default:"0" }}</span>
+                                                </button>
+                                            </form>
+
 
                                             <div class="comments-shared">
                                                 <a href="#" class="post-add-icon inline-items">
                                                     <svg class="olymp-speech-balloon-icon">
-                                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-speech-balloon-icon"></use>
                                                     </svg>
-
-                                                    <span>0</span>
+                                                    <span>17</span>
                                                 </a>
 
                                                 <a href="#" class="post-add-icon inline-items">
                                                     <svg class="olymp-share-icon">
-                                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
+                                                        <use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %}#olymp-share-icon"></use>
                                                     </svg>
-
-                                                    <span>16</span>
+                                                    <span>24</span>
                                                 </a>
                                             </div>
 
 
                                         </div>
 
-                                        <div class="control-block-button post-control-button">
 
-                                            <a href="#" class="btn btn-control">
-                                                <svg class="olymp-like-post-icon">
-                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
-                                                </svg>
-                                            </a>
-
-                                            <a href="#" class="btn btn-control">
-                                                <svg class="olymp-comments-post-icon">
-                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
-                                                </svg>
-                                            </a>
-
-                                            <a href="#" class="btn btn-control">
-                                                <svg class="olymp-share-icon">
-                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
-                                                </svg>
-                                            </a>
-
-                                        </div>
 
                                     </article>
                                 </div>

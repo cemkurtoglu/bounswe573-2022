@@ -73,11 +73,27 @@ def post_blog(request):
         else:
             print(postBlog.errors.as_json)
 
-
-def blog_post(request):
+##blog viewing functionality
+def blog_post(request, blog_id):
     user = User.objects.get(id=1)
-    context = {'user':user}
+    blog = Post.objects.get(id=blog_id)
+    context = {
+        'user':user,
+        'blog':blog
+    }
     return render(request,'home_page/blog_post.html',context)
+
+def social_space(request, space_id):
+    user = User.objects.get(id=1)
+    user_social_space = SocialSpace.objects.get(id=space_id, users__id=1)
+    users_posts = Post.objects.filter(author__in=user_social_space.users.all())
+    # print("-------->", users_posts)
+    context = {
+        'user': user,
+        'social_space': user_social_space,
+        'users_posts': users_posts
+    }
+    return render(request, 'social_space/social_space_main.html', context)
 
 #delete later on
 def test_authentication_page(request):
