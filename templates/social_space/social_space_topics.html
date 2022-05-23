@@ -153,21 +153,22 @@
 				
 					<tbody>
 				
+
+				    {% for post in social_space.socialpost_set.all %}
 					<tr>
 						<td class="topic-date" colspan="2">
 							March 24th, 2016 at 6:42 pm
 							<a href="#" class="reply-topic">Reply</a>
 						</td>
 					</tr>
-				    {% for post in social_space.socialpost_set.all %}
                         <tr>
-                            <td class="author">
-                                <div class="author-thumb">
-                                    <img src="img/avatar2.jpg" alt="author">
+                            <td class="author-left" >
+                                <div class="author-thumb" >
+                                    <img src="{{post.author.profileImage.url}}" alt="author">
                                 </div>
                                 <div class="author-content">
-                                    <a href="02-ProfilePage.html" class="h6 author-name">{{ post.author.first_name }}</a>
-                                    <div class="country">{{ post.author.country }}</div>
+                                    <a href="{% url 'user_profile_page_main:profile_page' %}" class="h6 author-name">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+                                    <div class="country">{{ post.author.occupation }}</div>
                                 </div>
                             </td>
                             <td class="posts">
