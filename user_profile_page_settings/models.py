@@ -87,7 +87,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=6, choices=genderChoice,default="Male")
     occupation = models.TextField(blank=True)
     maritialStatus = models.CharField(max_length=9, choices=maritialStatusChoice, default="Single")
-    profileImage = models.ImageField(null = True,blank = True,upload_to='static/user_profile_page_settings/profileImages/')
+    profileImage = models.ImageField(null = True,blank = True,upload_to='static/user_profile_page_settings/profileImages/', default='/static/user_profile_page_settings/img/guy.png')
     backgroundImage = models.ImageField(null = True,blank = True,upload_to='static/user_profile_page_settings/profileImages/')
     facebookAccount = models.URLField(blank=True)
 
