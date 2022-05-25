@@ -1,6 +1,8 @@
 from django import forms
 from user_profile_page_settings.models import User
 from home_page.models import Post,Tags
+from django.contrib.auth.forms import UserCreationForm
+
 
 class PostForm(forms.ModelForm):
     
@@ -23,4 +25,9 @@ class BlogPostForm(forms.ModelForm):
     blogContent = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','size':30}))
     title = forms.CharField( widget=forms.TextInput(attrs={'class':'form-control','type':'text'}))
 
-   
+
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'birthDate', 'gender')
