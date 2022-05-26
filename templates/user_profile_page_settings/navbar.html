@@ -53,7 +53,7 @@
 								</li>
 								
 								<li>
-									<a href="#">
+									<a href="{% url 'home_page:logout' %}?next=/login">
 										<svg class="olymp-logout-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-logout-icon"></use></svg>
 
 										<span>Log Out</span>
@@ -107,6 +107,3 @@
 </header>
 
 <!-- ... end Header-BP -->
-
-
-
