@@ -83,107 +83,142 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+						<a class="nav-link {% if request.resolver_match.url_name == 'signup' %}active show{% endif %}"
+                           {% if request.resolver_match.url_name == 'signup' %} aria-selected="true" {% endif %}
+						    data-toggle="tab" href="#home" role="tab">
 							<svg class="olymp-login-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-login-icon"></use></svg>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#profile" role="tab">
+						<a class="nav-link {% if request.resolver_match.url_name == 'login' %}active show{% endif %}"
+                           {% if request.resolver_match.url_name == 'login' %} aria-selected="true" {% endif %}
+                           data-toggle="tab" href="#profile" role="tab">
 							<svg class="olymp-register-icon"><use xlink:href="{% static 'user_profile_page_settings/svg-icons/sprites/icons.svg' %} #olymp-register-icon"></use></svg>
 						</a>
 					</li>
 				</ul>
-			
+
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div class="tab-pane active" id="home" role="tabpanel" data-mh="log-tab">
+					<div class="tab-pane  {% if request.resolver_match.url_name == 'signup' %}active show{% endif %}" id="home" role="tabpanel" data-mh="log-tab">
 						<div class="title h6">Register to Olympus</div>
-						<form class="content">
+                        <form class="content" method="POST" action="{% url 'home_page:signup' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
 							<div class="row">
 								<div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
 									<div class="form-group label-floating is-empty">
 										<label class="control-label">First Name</label>
-										<input class="form-control" placeholder="" type="text">
+                                        <input value="{{form.first_name.value|default_if_none:''}}" class="form-control"
+                                        name="{{ form.first_name.name }}" type="text" />
+                                        <div class="errorfield">{{ form.errors.first_name }}</div>
 									</div>
 								</div>
 								<div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
 									<div class="form-group label-floating is-empty">
 										<label class="control-label">Last Name</label>
-										<input class="form-control" placeholder="" type="text">
+										<input value="{{form.last_name.value|default_if_none:''}}" class="form-control"
+                                        name="{{ form.last_name.name }}" type="text" />
+                                        <div class="errorfield">{{ form.errors.last_name }}</div>
 									</div>
 								</div>
 								<div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
 									<div class="form-group label-floating is-empty">
-										<label class="control-label">Your Email</label>
-										<input class="form-control" placeholder="" type="email">
+										<label class="control-label">Username</label>
+										<input value="{{form.username.value|default_if_none:''}}" class="form-control"
+                                        name="{{ form.username.name }}" type="text" />
+                                        <div class="errorfield">{{ form.errors.username }}</div>
 									</div>
+                                    <div class="form-group label-floating is-empty">
+										<label class="control-label">Your Email</label>
+										<input value="{{form.email.value|default_if_none:''}}" class="form-control"
+                                        name="{{ form.email.name }}" type="email" />
+                                        <div class="errorfield">{{ form.errors.email }}</div>
+									</div>
+                                </div>
+                                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
 									<div class="form-group label-floating is-empty">
 										<label class="control-label">Your Password</label>
-										<input class="form-control" placeholder="" type="password">
+                                        <input value="" class="form-control"
+                                        name="{{ form.password1.name }}" type="password" />
+                                        <div class="errorfield">{{ form.errors.password1 }}</div>
 									</div>
-			
+								</div>
+                                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+									<div class="form-group label-floating is-empty">
+										<label class="control-label">Confirm Password</label>
+                                        <input value="" class="form-control"
+                                        name="{{ form.password2.name }}" type="password" />
+                                        <div class="errorfield">{{ form.errors.password2 }}</div>
+									</div>
+								</div>
+                                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
 									<div class="form-group date-time-picker label-floating">
 										<label class="control-label">Your Birthday</label>
-										<input name="datetimepicker" value="10/24/1984" />
+										<input type="date" class="datetimepicker" name="{{ form.birthDate.name }}" value="{{form.birthDate.value|default_if_none:''}}" />
+                                        <div class="errorfield">{{ form.errors.birthDate }}</div>
 										<span class="input-group-addon">
-														<svg class="olymp-calendar-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
-													</span>
+                                            <svg class="olymp-calendar-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+                                        </span>
 									</div>
-			
+								</div>
+                                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
 									<div class="form-group label-floating is-select">
 										<label class="control-label">Your Gender</label>
-										<select class="selectpicker form-control">
-											<option value="MA">Male</option>
-											<option value="FE">Female</option>
+										<select class="selectpicker form-control" name="{{ form.gender.name }}">
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
 										</select>
 									</div>
-			
-									<div class="remember">
-										<div class="checkbox">
-											<label>
-												<input name="optionsCheckboxes" type="checkbox">
-												I accept the <a href="#">Terms and Conditions</a> of the website
-											</label>
-										</div>
-									</div>
-			
-									<a href="#" class="btn btn-purple btn-lg full-width">Complete Registration!</a>
 								</div>
-							</div>
+{#									<div class="remember">#}
+{#										<div class="checkbox">#}
+{#											<label>#}
+{#												<input name="optionsCheckboxes" type="checkbox">#}
+{#												I accept the <a href="#">Terms and Conditions</a> of the website#}
+{#											</label>#}
+{#										</div>#}
+{#									</div>#}
+			
+									<button type="submit" class="btn btn-purple btn-lg full-width">Complete Registration!</button>
+								</div>
 						</form>
 					</div>
 			
-					<div class="tab-pane" id="profile" role="tabpanel" data-mh="log-tab">
+					<div class="tab-pane  {% if request.resolver_match.url_name == 'login' %}active show{% endif %}" id="profile" role="tabpanel" data-mh="log-tab">
 						<div class="title h6">Login to your Account</div>
-						<form class="content">
+						<form class="content" method="POST" action="{% url 'home_page:login' %}">
+                            {% csrf_token %}
 							<div class="row">
 								<div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
 									<div class="form-group label-floating is-empty">
-										<label class="control-label">Your Email</label>
-										<input class="form-control" placeholder="" type="email">
+										<label class="control-label">Your Username</label>
+										<input type="text" class="form-control" name="username" autofocus=""
+                                               autocapitalize="none" autocomplete="username" maxlength="150"
+                                               id="id_username">
 									</div>
 									<div class="form-group label-floating is-empty">
 										<label class="control-label">Your Password</label>
-										<input class="form-control" placeholder="" type="password">
+										<input type="password" class="form-control" name="password"
+                                               autocomplete="current-password" id="id_password">
 									</div>
+			                        <div class="errorfield">{{ form.non_field_errors }}</div>
+{#                                    <div class="remember">#}
+{##}
+{#										<div class="checkbox">#}
+{#											<label>#}
+{#												<input name="optionsCheckboxes" type="checkbox">#}
+{#												Remember Me#}
+{#											</label>#}
+{#										</div>#}
+{#                                        <a href="#" class="forgot" data-toggle="modal" data-target="#forgot-password">Forgot my Password</a>#}
+{#									</div>#}
 			
-                                    <div class="remember">
+                                    <button class="btn btn-lg btn-primary full-width" type="submit">Login</button>
 
-										<div class="checkbox">
-											<label>
-												<input name="optionsCheckboxes" type="checkbox">
-												Remember Me
-											</label>
-										</div>
-                                        <a href="#" class="forgot" data-toggle="modal" data-target="#forgot-password">Forgot my Password</a>
-									</div>
-			
-									<a href="#" class="btn btn-lg btn-primary full-width">Login</a>
-			
 
 			
 			
-									<p>Don’t you have an account? <a href="#">Register Now!</a> it’s really simple and you can start enjoing all the benefits!</p>
+									<p>Don’t you have an account? <a href="{% url 'home_page:signup' %}">Register Now!</a> it’s really simple and you can start enjoing all the benefits!</p>
 								</div>
 							</div>
 						</form>
