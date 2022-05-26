@@ -92,4 +92,4 @@ class User(AbstractUser):
     facebookAccount = models.URLField(blank=True)
 
     def __str__(self) -> str:
-        return str(self.id) #+ '_' + self.first_name + '_' + self.last_name
+        return str(self.id) + '_' + self.first_name + '_' + self.last_name
