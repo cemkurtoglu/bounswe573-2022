@@ -10,7 +10,7 @@ urlpatterns = [
     path('post-reaction/', post_reaction, name="post_reaction"),
     path('postLike/',post_like, name="post_like"),
     path('postDislike/', post_dislike, name="post_dislike"),
-    path('user/',user, name='user'),
+    path('user/<int:user_id>/',user, name='user'),
     path("followToggle/<int:profileUserId>/", views.followToggle, name="followToggle")
 
 ]

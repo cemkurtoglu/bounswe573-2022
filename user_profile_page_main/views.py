@@ -10,41 +10,41 @@ from django.template.defaulttags import register
 # Create your views here.
 def profile_page(request):
 
-    user = User.objects.get(id=1)
+    user = User.objects.get(id=request.user.id)
     posts = user.post_set.all()
 
     context = {'user':user, 'posts':posts }
     return render(request,'user_profile_page_main/profile_page_main.html',context)
 
 
-def user(request):
-    # set profileUserId as parameter for actual user login case
-    # for now lets assume public profile user have id 2
-    user = User.objects.get(id=1)
-    profileUser = User.objects.get(id=2)
-    posts = user.post_set.all()
+def user(request, user_id):
 
-    context = {'user':user, 'posts':posts, 'profileUser': profileUser}
+    user = User.objects.get(id=request.user.id)
+    profileUser = User.objects.get(id=user_id)
+    posts = user.post_set.all()
+    profileUserPosts = profileUser.post_set.all()
+
+    context = {'user':user, 'posts':posts, 'profileUser': profileUser, 'profilePosts':profileUserPosts}
     return render(request,'user_profile_page_main/profile_page_user.html',context)
 
 
 def followToggle(request, profileUserId):
     prifileUser = User.objects.get(id=profileUserId)
-    currentUserObj = User.objects.get(id=1)
-    following = prifileUser.following.all()
+    currentUserObj = User.objects.get(id=request.user.id)
+    following = currentUserObj.following.all()
 
     if profileUserId != currentUserObj.id:
-        if currentUserObj in following:
-            prifileUser.following.remove(currentUserObj.id)
+        if prifileUser in following:
+            currentUserObj.following.remove(prifileUser.id)
         else:
-            prifileUser.following.add(currentUserObj.id)
+            currentUserObj.following.add(prifileUser.id)
 
-    return HttpResponseRedirect("/profile/user/")
+    return HttpResponseRedirect("/profile/user/" + str(profileUserId))
 
 
 def post_reaction(request):
     if request.method == "POST":
-        dummy_user = User.objects.get(id=1)
+        dummy_user = User.objects.get(id=request.user.id)
         post_id = request.POST.get('post_id', None)
         opinion = request.POST.get('opinion', None)  # like or dislike button clicked
 
