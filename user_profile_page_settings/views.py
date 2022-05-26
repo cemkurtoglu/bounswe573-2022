@@ -6,7 +6,7 @@ from user_profile_page_settings.models import User
 # Create your views here.
 def account_dashboard(request):
 
-    user = User.objects.get(id=1)
+    user = User.objects.get(id=request.user.id)
     usStates = User.states
     genders = User.genderChoice
     maritialStatus = User.maritialStatusChoice 
@@ -29,7 +29,7 @@ def account_dashboard(request):
 
 def upload_photo(request):
 
-    user = User.objects.get(id=1)
+    user = User.objects.get(id=request.user.id)
     form =  ProfileInformationForm_Image(request.POST,request.FILES, instance=user)
 
     if request.method == "POST":
