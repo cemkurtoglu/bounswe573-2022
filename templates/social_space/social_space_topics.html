@@ -55,7 +55,7 @@
 				<div class="ui-block-title">
 					<div class="h6 title">
                         <img src="{% static 'user_profile_page_settings/img/tag.png' %}" alt="forum" width="34" height="34">
-                        General</div>
+                        {{topic_type }}</div>
 					<form class="w-search">
 						<div class="form-group with-button">
 							<input class="form-control" type="text" placeholder="Search the forums...">
@@ -106,9 +106,9 @@
                         <div class="errorfield">{{ post_form.errors.content }}</div>
                         <div class="add-options-message">
 
-							<input id = "id_type" type="hidden" name="post_type" value="general" />
+							<input id = "id_type" type="hidden" name="post_type" value="{{topic_type}}" />
 							<input id = "id_author" type="hidden" name="author" value="{{user.id}}" />
-							<input id = "social_space" type="hidden" name="social_space" value="{{social_space.id}}" />
+							<input id = "social_space" type="hidden" name="social_space" value="{{social_space_id}}" />
 
                         	<button type="submit" class="btn btn-primary btn-md-2">Post Question</button>
                         	<button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
@@ -154,7 +154,7 @@
 					<tbody>
 				
 
-				    {% for post in social_space.socialpost_set.all %}
+				    {% for post in social_space_posts %}
 					<tr>
 						<td class="topic-date" colspan="2">
 							March 24th, 2016 at 6:42 pm

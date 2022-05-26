@@ -11,7 +11,9 @@ class SocialSpaceForm(forms.ModelForm):
 
     def save(self, commit=True, *args, **kwargs):
         instance = super().save(commit=False)
-        owner = User.objects.get(id=1)
+        print(args)
+        print(kwargs)
+        owner = User.objects.get(id=kwargs.get("id"))
 
         def save_m_to_m():
             user_str = self.cleaned_data.get('users')

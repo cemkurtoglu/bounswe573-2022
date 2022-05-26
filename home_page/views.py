@@ -13,13 +13,14 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    user = User.objects.get(id=1)
+    user = User.objects.get(id=request.user.id)
     tags = Tags.objects.all()
     postForm = PostForm(request.POST or None,instance=user)
     postBlog = BlogPostForm(request.POST or None,instance=user)
     social_spaces = SocialSpace.objects.all()
     user_spaces = SocialSpace.objects.filter(users__id=user.id)
     post_list = Post.objects.all()
+    followed_post_list = Post.objects.filter(author_id__in=user.following.all().values_list('id'))
 
     # videoPost = QuestionPost(request.POST or None,instance=user)
     context = {
@@ -29,14 +30,17 @@ def home(request):
         'postBlog': postBlog,
         'social_spaces': social_spaces,
         'post_list': post_list,
-        'user_spaces': user_spaces
+        'user_spaces': user_spaces,
+        'followed_post_list':followed_post_list
     }
+    print(len(followed_post_list))
+
     return render(request, 'home_page/home.html', context)
 
 
 def post_question(request):
 
-    user = User.objects.get(id=1)
+    user = User.objects.get(id=request.user.id)
     postForm = PostForm(request.POST or None,instance=user)
 
 
@@ -80,10 +84,8 @@ def post_blog(request):
 class SignUp(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'home_page/authentication.html'
-
     def get_success_url(self):
         return reverse_lazy('home_page:login')
-
 
 class LoginUser(LoginView):
     template_name = 'home_page/authentication.html'
@@ -94,7 +96,7 @@ class LoginUser(LoginView):
 
 ##blog viewing functionality
 def blog_post(request, blog_id):
-    user = User.objects.get(id=1)
+    user = User.objects.get(id=request.user.id)
     blog = Post.objects.get(id=blog_id)
     context = {
         'user':user,
