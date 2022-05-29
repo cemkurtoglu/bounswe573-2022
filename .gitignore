@@ -2,7 +2,9 @@
 virtualenv/
 static/user_profile_page_settings/profileImages/
 static/user_profile_page_settings/img/
-media/static/
+media/static/home_page
+media/static/user_profile_page_settings
+
 migrations
 */__pycache__
 templates/home_page/test.html
