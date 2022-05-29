@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from coLearning_website.settings import Domain
 
 
 @login_required
@@ -31,7 +32,8 @@ def home(request):
         'social_spaces': social_spaces,
         'post_list': post_list,
         'user_spaces': user_spaces,
-        'followed_post_list':followed_post_list
+        'followed_post_list':followed_post_list,
+        'Domain':Domain
     }
     print(len(followed_post_list))
 
@@ -103,4 +105,7 @@ def blog_post(request, blog_id):
         'blog':blog
     }
     return render(request,'home_page/blog_post.html',context)
+
+def comment_display(request):
+    return render(request,'home_page/test.html')
 

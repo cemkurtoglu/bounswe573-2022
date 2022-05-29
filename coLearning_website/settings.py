@@ -30,6 +30,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+if DEBUG:
+    Domain = "https://localhost:8000"
+else:
+    Domain = "https://abc.com"
+
+
 
 # Application definition
 
@@ -84,10 +90,10 @@ WSGI_APPLICATION = 'coLearning_website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'swe573',
-        'USER': 'cemkurtoglu',
-        'PASSWORD': 'boun1923',
-        'HOST': 'localhost',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
         'PORT': '5432'
     }
 }
