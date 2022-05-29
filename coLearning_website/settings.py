@@ -31,7 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 if DEBUG:
-    Domain = "https://localhost:8000"
+    Domain = "http://13.122.192.153:8000"
 else:
     Domain = "https://abc.com"
 
