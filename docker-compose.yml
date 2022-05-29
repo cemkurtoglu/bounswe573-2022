@@ -22,3 +22,9 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - '80:80'
