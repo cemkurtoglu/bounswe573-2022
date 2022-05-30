@@ -28,10 +28,10 @@ SECRET_KEY = 'django-insecure-dt1p%csx!q)l6anl(fytbc#r(d!$qkhfecnmthwca@z^1c(+&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 if DEBUG:
-    Domain = "http://13.122.192.153:8000"
+    Domain = "http://3.122.192.153:8000"
 else:
     Domain = "https://abc.com"
 
@@ -133,7 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 BASE_PATH = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR, '../static/')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [

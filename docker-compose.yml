@@ -24,7 +24,16 @@ services:
       - db
   nginx:
     build: ./nginx
+    volumes:
+      - type: bind
+        source: ./static
+        target: /code/static
     container_name: nginx
     restart: always
     ports:
       - '80:80'
+    depends_on:
+      - web
+
+volumes:
+  static:
