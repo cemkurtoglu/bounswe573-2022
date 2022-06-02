@@ -1,7 +1,6 @@
 # created by virtualenv automatically
 virtualenv/
 static/user_profile_page_settings/profileImages/
-static/user_profile_page_settings/img/
 media/static/home_page
 media/static/user_profile_page_settings
 
